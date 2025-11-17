@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\mirey\\Fall 2025\\CS324E\\CS-324E-Final-Project\\Final-Project-Pacman\\Final-Project-Pacman\\Final-Project-Pacman.csproj": {}
+    "C:\\Users\\tamim\\OneDrive\\Documents\\CS\\324e\\Final Project\\CS-324E-Final-Project\\Final-Project-Pacman\\Final-Project-Pacman\\Final-Project-Pacman.csproj": {}
   },
   "projects": {
-    "C:\\Users\\mirey\\Fall 2025\\CS324E\\CS-324E-Final-Project\\Final-Project-Pacman\\Final-Project-Pacman\\Final-Project-Pacman.csproj": {
+    "C:\\Users\\tamim\\OneDrive\\Documents\\CS\\324e\\Final Project\\CS-324E-Final-Project\\Final-Project-Pacman\\Final-Project-Pacman\\Final-Project-Pacman.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\mirey\\Fall 2025\\CS324E\\CS-324E-Final-Project\\Final-Project-Pacman\\Final-Project-Pacman\\Final-Project-Pacman.csproj",
+        "projectUniqueName": "C:\\Users\\tamim\\OneDrive\\Documents\\CS\\324e\\Final Project\\CS-324E-Final-Project\\Final-Project-Pacman\\Final-Project-Pacman\\Final-Project-Pacman.csproj",
         "projectName": "Final-Project-Pacman",
-        "projectPath": "C:\\Users\\mirey\\Fall 2025\\CS324E\\CS-324E-Final-Project\\Final-Project-Pacman\\Final-Project-Pacman\\Final-Project-Pacman.csproj",
-        "packagesPath": "C:\\Users\\mirey\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\mirey\\Fall 2025\\CS324E\\CS-324E-Final-Project\\Final-Project-Pacman\\Final-Project-Pacman\\obj\\",
+        "projectPath": "C:\\Users\\tamim\\OneDrive\\Documents\\CS\\324e\\Final Project\\CS-324E-Final-Project\\Final-Project-Pacman\\Final-Project-Pacman\\Final-Project-Pacman.csproj",
+        "packagesPath": "C:\\Users\\tamim\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\tamim\\OneDrive\\Documents\\CS\\324e\\Final Project\\CS-324E-Final-Project\\Final-Project-Pacman\\Final-Project-Pacman\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\mirey\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "C:\\Users\\tamim\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net8.0"
