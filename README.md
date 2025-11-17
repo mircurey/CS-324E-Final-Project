@@ -1,3 +1,2 @@
 # CS-324E-Final-Project
-CS324E Abraham Group Pacman
-Mireya
+CS324E Abraham Group Pacman - Manasa, Mireya, Tamima
