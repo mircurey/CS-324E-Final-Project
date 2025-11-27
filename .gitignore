@@ -1,0 +1,18 @@
+# Ignore build outputs
+bin/
+obj/
+
+# User-specific files
+*.user
+*.suo
+*.cache
+*.db
+*.log
+
+# Visual Studio / VS Code
+.vs/
+*.pdb
+
+# NuGet artifacts
+*.nuget.cache
+*.nuget.props
