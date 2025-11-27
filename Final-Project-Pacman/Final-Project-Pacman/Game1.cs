@@ -24,6 +24,9 @@ public class Game1 : Game
         
     private GameState _currentState;
     private KeyboardState _previousKState;
+    private HighScore highScore;
+    private int currentScore = 0;
+
     
     public Game1()
     {
@@ -55,6 +58,7 @@ public class Game1 : Game
         _pinkyTexture = Content.Load<Texture2D>("assets/pinky");
         _inkyTexture = Content.Load<Texture2D>("assets/inky");
         _clydeTexture = Content.Load<Texture2D>("assets/clyde");
+        highScore = new HighScore();
 
     }
 
@@ -121,13 +125,17 @@ public class Game1 : Game
             DrawTextCentered("details, and objective]", 175, Color.White);
 
             // temporary high score in place of real high score to be added later
-            DrawTextCentered("HIGH SCORE: 0000", 300, Color.Red); 
+            DrawTextCentered("HIGH SCORE: " + highScore.Value.ToString("D4"), 300, Color.Red);
+
         }
         else if (_currentState == GameState.Playing)
         {
             // GUI header, add update functionality
-            _spriteBatch.DrawString(_font, "SCORE: 0", new Vector2(10, 10), Color.White);
-            _spriteBatch.DrawString(_font, "HIGH: 0", new Vector2(400, 10), Color.White);
+            _spriteBatch.DrawString(_font, "SCORE: " + currentScore.ToString(), 
+                new Vector2(10, 10), Color.White);
+
+            _spriteBatch.DrawString(_font, "HIGH: " + highScore.Value.ToString(), 
+                new Vector2(400, 10), Color.White);
 
             // draw maze and make room at top for score
             _spriteBatch.Draw(_mazeTexture, new Rectangle(0, 50, 560, 570), Color.White);

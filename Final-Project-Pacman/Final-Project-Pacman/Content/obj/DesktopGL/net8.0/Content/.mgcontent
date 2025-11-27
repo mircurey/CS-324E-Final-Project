@@ -4,31 +4,29 @@
   <Platform>DesktopGL</Platform>
   <Config />
   <SourceFiles>
-    <File>C:/Users/mirey/Fall 2025/CS324E/CS-324E-Final-Project/Final-Project-Pacman/Final-Project-Pacman/Content/assets/apple.png</File>
-    <File>C:/Users/mirey/Fall 2025/CS324E/CS-324E-Final-Project/Final-Project-Pacman/Final-Project-Pacman/Content/assets/blinky.png</File>
-    <File>C:/Users/mirey/Fall 2025/CS324E/CS-324E-Final-Project/Final-Project-Pacman/Final-Project-Pacman/Content/assets/blue_ghost.png</File>
-    <File>C:/Users/mirey/Fall 2025/CS324E/CS-324E-Final-Project/Final-Project-Pacman/Final-Project-Pacman/Content/assets/clyde.png</File>
-    <File>C:/Users/mirey/Fall 2025/CS324E/CS-324E-Final-Project/Final-Project-Pacman/Final-Project-Pacman/Content/assets/dot.png</File>
-    <File>C:/Users/mirey/Fall 2025/CS324E/CS-324E-Final-Project/Final-Project-Pacman/Final-Project-Pacman/Content/assets/inky.png</File>
-    <File>C:/Users/mirey/Fall 2025/CS324E/CS-324E-Final-Project/Final-Project-Pacman/Final-Project-Pacman/Content/assets/pacman-down-1.png</File>
-    <File>C:/Users/mirey/Fall 2025/CS324E/CS-324E-Final-Project/Final-Project-Pacman/Final-Project-Pacman/Content/assets/pacman-down-2.png</File>
-    <File>C:/Users/mirey/Fall 2025/CS324E/CS-324E-Final-Project/Final-Project-Pacman/Final-Project-Pacman/Content/assets/pacman-down-3.png</File>
-    <File>C:/Users/mirey/Fall 2025/CS324E/CS-324E-Final-Project/Final-Project-Pacman/Final-Project-Pacman/Content/assets/pacman-left-1.png</File>
-    <File>C:/Users/mirey/Fall 2025/CS324E/CS-324E-Final-Project/Final-Project-Pacman/Final-Project-Pacman/Content/assets/pacman-left-2.png</File>
-    <File>C:/Users/mirey/Fall 2025/CS324E/CS-324E-Final-Project/Final-Project-Pacman/Final-Project-Pacman/Content/assets/pacman-left-3.png</File>
-    <File>C:/Users/mirey/Fall 2025/CS324E/CS-324E-Final-Project/Final-Project-Pacman/Final-Project-Pacman/Content/assets/pacman-right-1.png</File>
-    <File>C:/Users/mirey/Fall 2025/CS324E/CS-324E-Final-Project/Final-Project-Pacman/Final-Project-Pacman/Content/assets/pacman-right-2.png</File>
-    <File>C:/Users/mirey/Fall 2025/CS324E/CS-324E-Final-Project/Final-Project-Pacman/Final-Project-Pacman/Content/assets/pacman-right-3.png</File>
-    <File>C:/Users/mirey/Fall 2025/CS324E/CS-324E-Final-Project/Final-Project-Pacman/Final-Project-Pacman/Content/assets/pacman-up-1.png</File>
-    <File>C:/Users/mirey/Fall 2025/CS324E/CS-324E-Final-Project/Final-Project-Pacman/Final-Project-Pacman/Content/assets/pacman-up-2.png</File>
-    <File>C:/Users/mirey/Fall 2025/CS324E/CS-324E-Final-Project/Final-Project-Pacman/Final-Project-Pacman/Content/assets/pacman-up-3.png</File>
-    <File>C:/Users/mirey/Fall 2025/CS324E/CS-324E-Final-Project/Final-Project-Pacman/Final-Project-Pacman/Content/assets/pacmaze.png</File>
-    <File>C:/Users/mirey/Fall 2025/CS324E/CS-324E-Final-Project/Final-Project-Pacman/Final-Project-Pacman/Content/assets/pinky.png</File>
-    <File>C:/Users/mirey/Fall 2025/CS324E/CS-324E-Final-Project/Final-Project-Pacman/Final-Project-Pacman/Content/assets/strawberry.png</File>
-    <File>C:/Users/mirey/Fall 2025/CS324E/CS-324E-Final-Project/Final-Project-Pacman/Final-Project-Pacman/Content/fonts/PressStart2P.spritefont</File>
+    <File>/Users/manasadamarla/CS-324E-Final-Project-1/Final-Project-Pacman/Final-Project-Pacman/Content/assets/apple.png</File>
+    <File>/Users/manasadamarla/CS-324E-Final-Project-1/Final-Project-Pacman/Final-Project-Pacman/Content/assets/blinky.png</File>
+    <File>/Users/manasadamarla/CS-324E-Final-Project-1/Final-Project-Pacman/Final-Project-Pacman/Content/assets/blue_ghost.png</File>
+    <File>/Users/manasadamarla/CS-324E-Final-Project-1/Final-Project-Pacman/Final-Project-Pacman/Content/assets/clyde.png</File>
+    <File>/Users/manasadamarla/CS-324E-Final-Project-1/Final-Project-Pacman/Final-Project-Pacman/Content/assets/dot.png</File>
+    <File>/Users/manasadamarla/CS-324E-Final-Project-1/Final-Project-Pacman/Final-Project-Pacman/Content/assets/inky.png</File>
+    <File>/Users/manasadamarla/CS-324E-Final-Project-1/Final-Project-Pacman/Final-Project-Pacman/Content/assets/pacman-down-1.png</File>
+    <File>/Users/manasadamarla/CS-324E-Final-Project-1/Final-Project-Pacman/Final-Project-Pacman/Content/assets/pacman-down-2.png</File>
+    <File>/Users/manasadamarla/CS-324E-Final-Project-1/Final-Project-Pacman/Final-Project-Pacman/Content/assets/pacman-down-3.png</File>
+    <File>/Users/manasadamarla/CS-324E-Final-Project-1/Final-Project-Pacman/Final-Project-Pacman/Content/assets/pacman-left-1.png</File>
+    <File>/Users/manasadamarla/CS-324E-Final-Project-1/Final-Project-Pacman/Final-Project-Pacman/Content/assets/pacman-left-2.png</File>
+    <File>/Users/manasadamarla/CS-324E-Final-Project-1/Final-Project-Pacman/Final-Project-Pacman/Content/assets/pacman-left-3.png</File>
+    <File>/Users/manasadamarla/CS-324E-Final-Project-1/Final-Project-Pacman/Final-Project-Pacman/Content/assets/pacman-right-1.png</File>
+    <File>/Users/manasadamarla/CS-324E-Final-Project-1/Final-Project-Pacman/Final-Project-Pacman/Content/assets/pacman-right-2.png</File>
+    <File>/Users/manasadamarla/CS-324E-Final-Project-1/Final-Project-Pacman/Final-Project-Pacman/Content/assets/pacman-right-3.png</File>
+    <File>/Users/manasadamarla/CS-324E-Final-Project-1/Final-Project-Pacman/Final-Project-Pacman/Content/assets/pacman-up-1.png</File>
+    <File>/Users/manasadamarla/CS-324E-Final-Project-1/Final-Project-Pacman/Final-Project-Pacman/Content/assets/pacman-up-2.png</File>
+    <File>/Users/manasadamarla/CS-324E-Final-Project-1/Final-Project-Pacman/Final-Project-Pacman/Content/assets/pacman-up-3.png</File>
+    <File>/Users/manasadamarla/CS-324E-Final-Project-1/Final-Project-Pacman/Final-Project-Pacman/Content/assets/pacmaze.png</File>
+    <File>/Users/manasadamarla/CS-324E-Final-Project-1/Final-Project-Pacman/Final-Project-Pacman/Content/assets/pinky.png</File>
+    <File>/Users/manasadamarla/CS-324E-Final-Project-1/Final-Project-Pacman/Final-Project-Pacman/Content/assets/strawberry.png</File>
   </SourceFiles>
   <DestFiles>
-    <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />
