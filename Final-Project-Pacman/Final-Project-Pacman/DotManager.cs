@@ -33,18 +33,17 @@ namespace Final_Project_Pacman
 
             int offsetX = 0;
             int offsetY = 50;
-            int shiftY = -3;       // global upward shift
-            int extraShift = 7;    // per-row downward shift
+            int shiftY = -3;       
+            int extraShift = 7;   
 
-            // 28 columns per row (you provided 28-bit patterns)
             string[] mask =
             {
-                "0000000000000000000000000000", // row 0
+                "0000000000000000000000000000",
                 "0000000000000000000000000000", // row 1
                 "0111111111111001111111111110", // row 2
                 "0100001000001001000001000010", // row 3
                 "0100001000001001000001000010", // row 4
-                "0111111111111111111111111110", // row 5  <-- SHIFT DOWN
+                "0111111111111111111111111110", // row 5  
                 "0000000000000000000000000000", // row 6
                 "0100001001000000001001000010", // row 7
                 "0111111001111001111001111110", // row 8
@@ -52,7 +51,7 @@ namespace Final_Project_Pacman
                 "0000001000001001000001000000", // row 10
                 "0000001001111111111001000000", // row 11
                 "0000001001000000001001000000", // row 12
-                "0000011111000000001111111111", // row 13 <-- SHIFT DOWN
+                "0000011111000000001111111111", // row 13 
                 "0000000000000000000000000000", // row 14
                 "0000001001000000001001000000", // row 15
                 "0000001001111111111001000000", // row 16
@@ -60,7 +59,7 @@ namespace Final_Project_Pacman
                 "0000001001000000001001000000", // row 18
                 "0111111111111001111111111110", // row 19
                 "0100001000001001000001000010", // row 20
-                "0111001111111111111111001110", // row 21 <-- SHIFT DOWN
+                "0111001111111111111111001110", // row 21 
                 "0000000000000000000000000000", // row 22
                 "0001001001000000001001001000", // row 23
                 "0111111001111001111001111110", // row 24
@@ -76,14 +75,12 @@ namespace Final_Project_Pacman
             {
                 for (int col = 0; col < cols; col++)
                 {
-                    // Skip empty tiles
                     if (mask[row][col] != '1')
                         continue;
 
                     int px = offsetX + col * tile + tile / 2;
                     int py = offsetY + row * tile + tile / 2 + shiftY;
 
-                    // ⭐ APPLY SPECIAL DOWNWARD SHIFT
                     if (row == 5 || row == 13 || row == 21)
                         py += extraShift;
 
@@ -96,7 +93,6 @@ namespace Final_Project_Pacman
                 }
             }
 
-            // Fruit stays aligned with global shift (NOT row-specific shifts)
             _fruitRect = new Rectangle(270, 300 + shiftY + 20, 16, 16);
         }
 
