@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<SourceFileCollection xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Profile>Reach</Profile>
+  <Platform>DesktopGL</Platform>
+  <Config />
+  <SourceFiles>
+    <File>c:/Users/tamim/OneDrive/Documents/CS/324e/Final Project/CS-324E-Final-Project/Final-Project-Pacman/Final-Project-Pacman/Content/assets/apple.png</File>
+    <File>c:/Users/tamim/OneDrive/Documents/CS/324e/Final Project/CS-324E-Final-Project/Final-Project-Pacman/Final-Project-Pacman/Content/assets/blinky.png</File>
+    <File>c:/Users/tamim/OneDrive/Documents/CS/324e/Final Project/CS-324E-Final-Project/Final-Project-Pacman/Final-Project-Pacman/Content/assets/blue_ghost.png</File>
+    <File>c:/Users/tamim/OneDrive/Documents/CS/324e/Final Project/CS-324E-Final-Project/Final-Project-Pacman/Final-Project-Pacman/Content/assets/clyde.png</File>
+    <File>c:/Users/tamim/OneDrive/Documents/CS/324e/Final Project/CS-324E-Final-Project/Final-Project-Pacman/Final-Project-Pacman/Content/assets/dot.png</File>
+    <File>c:/Users/tamim/OneDrive/Documents/CS/324e/Final Project/CS-324E-Final-Project/Final-Project-Pacman/Final-Project-Pacman/Content/assets/inky.png</File>
+    <File>c:/Users/tamim/OneDrive/Documents/CS/324e/Final Project/CS-324E-Final-Project/Final-Project-Pacman/Final-Project-Pacman/Content/assets/pacman-down-1.png</File>
+    <File>c:/Users/tamim/OneDrive/Documents/CS/324e/Final Project/CS-324E-Final-Project/Final-Project-Pacman/Final-Project-Pacman/Content/assets/pacman-down-2.png</File>
+    <File>c:/Users/tamim/OneDrive/Documents/CS/324e/Final Project/CS-324E-Final-Project/Final-Project-Pacman/Final-Project-Pacman/Content/assets/pacman-down-3.png</File>
+    <File>c:/Users/tamim/OneDrive/Documents/CS/324e/Final Project/CS-324E-Final-Project/Final-Project-Pacman/Final-Project-Pacman/Content/assets/pacman-left-1.png</File>
+    <File>c:/Users/tamim/OneDrive/Documents/CS/324e/Final Project/CS-324E-Final-Project/Final-Project-Pacman/Final-Project-Pacman/Content/assets/pacman-left-2.png</File>
+    <File>c:/Users/tamim/OneDrive/Documents/CS/324e/Final Project/CS-324E-Final-Project/Final-Project-Pacman/Final-Project-Pacman/Content/assets/pacman-left-3.png</File>
+    <File>c:/Users/tamim/OneDrive/Documents/CS/324e/Final Project/CS-324E-Final-Project/Final-Project-Pacman/Final-Project-Pacman/Content/assets/pacman-right-1.png</File>
+    <File>c:/Users/tamim/OneDrive/Documents/CS/324e/Final Project/CS-324E-Final-Project/Final-Project-Pacman/Final-Project-Pacman/Content/assets/pacman-right-2.png</File>
+    <File>c:/Users/tamim/OneDrive/Documents/CS/324e/Final Project/CS-324E-Final-Project/Final-Project-Pacman/Final-Project-Pacman/Content/assets/pacman-right-3.png</File>
+    <File>c:/Users/tamim/OneDrive/Documents/CS/324e/Final Project/CS-324E-Final-Project/Final-Project-Pacman/Final-Project-Pacman/Content/assets/pacman-up-1.png</File>
+    <File>c:/Users/tamim/OneDrive/Documents/CS/324e/Final Project/CS-324E-Final-Project/Final-Project-Pacman/Final-Project-Pacman/Content/assets/pacman-up-2.png</File>
+    <File>c:/Users/tamim/OneDrive/Documents/CS/324e/Final Project/CS-324E-Final-Project/Final-Project-Pacman/Final-Project-Pacman/Content/assets/pacman-up-3.png</File>
+    <File>c:/Users/tamim/OneDrive/Documents/CS/324e/Final Project/CS-324E-Final-Project/Final-Project-Pacman/Final-Project-Pacman/Content/assets/pacmaze.png</File>
+    <File>c:/Users/tamim/OneDrive/Documents/CS/324e/Final Project/CS-324E-Final-Project/Final-Project-Pacman/Final-Project-Pacman/Content/assets/pinky.png</File>
+    <File>c:/Users/tamim/OneDrive/Documents/CS/324e/Final Project/CS-324E-Final-Project/Final-Project-Pacman/Final-Project-Pacman/Content/assets/strawberry.png</File>
+    <File>c:/Users/tamim/OneDrive/Documents/CS/324e/Final Project/CS-324E-Final-Project/Final-Project-Pacman/Final-Project-Pacman/Content/fonts/PressStart2P.spritefont</File>
+    <File>c:/Users/tamim/OneDrive/Documents/CS/324e/Final Project/CS-324E-Final-Project/Final-Project-Pacman/Final-Project-Pacman/Content/pacman_beginning.wav</File>
+    <File>c:/Users/tamim/OneDrive/Documents/CS/324e/Final Project/CS-324E-Final-Project/Final-Project-Pacman/Final-Project-Pacman/Content/pacman_chomp.wav</File>
+    <File>c:/Users/tamim/OneDrive/Documents/CS/324e/Final Project/CS-324E-Final-Project/Final-Project-Pacman/Final-Project-Pacman/Content/pacman_death.wav</File>
+    <File>c:/Users/tamim/OneDrive/Documents/CS/324e/Final Project/CS-324E-Final-Project/Final-Project-Pacman/Final-Project-Pacman/Content/pacman_eatfruit.wav</File>
+    <File>c:/Users/tamim/OneDrive/Documents/CS/324e/Final Project/CS-324E-Final-Project/Final-Project-Pacman/Final-Project-Pacman/Content/pacman_eatghost.wav</File>
+    <File>c:/Users/tamim/OneDrive/Documents/CS/324e/Final Project/CS-324E-Final-Project/Final-Project-Pacman/Final-Project-Pacman/Content/pacman_extrapac.wav</File>
+    <File>c:/Users/tamim/OneDrive/Documents/CS/324e/Final Project/CS-324E-Final-Project/Final-Project-Pacman/Final-Project-Pacman/Content/pacman_intermission.wav</File>
+  </SourceFiles>
+  <DestFiles>
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+  </DestFiles>
+</SourceFileCollection>

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PipelineBuildEvent xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <SourceFile>c:/Users/tamim/OneDrive/Documents/CS/324e/Final Project/CS-324E-Final-Project/Final-Project-Pacman/Final-Project-Pacman/Content/fonts/PressStart2P.spritefont</SourceFile>
+  <SourceTime>2025-11-28T18:25:33.6353268-06:00</SourceTime>
+  <DestFile>c:/Users/tamim/OneDrive/Documents/CS/324e/Final Project/CS-324E-Final-Project/Final-Project-Pacman/Final-Project-Pacman/Content/bin/DesktopGL/fonts/PressStart2P.xnb</DestFile>
+  <DestTime>2025-11-28T18:25:39.226986-06:00</DestTime>
+  <Importer>FontDescriptionImporter</Importer>
+  <ImporterTime>2025-06-02T05:31:02-05:00</ImporterTime>
+  <Processor>LocalizedFontProcessor</Processor>
+  <ProcessorTime>2025-06-02T05:31:02-05:00</ProcessorTime>
+  <Parameters>
+    <Key>PremultiplyAlpha</Key>
+    <Value>True</Value>
+  </Parameters>
+  <Parameters>
+    <Key>TextureFormat</Key>
+    <Value>Compressed</Value>
+  </Parameters>
+  <Dependencies />
+  <BuildAsset />
+  <BuildOutput />
+</PipelineBuildEvent>
