@@ -265,9 +265,12 @@
 /processorParam:TextureFormat=Color
 /build:assets/strawberry.png
 
+#begin fonts/PressStart2P-Regular.ttf
+/copy:fonts/PressStart2P-Regular.ttf
+
 #begin fonts/PressStart2P.spritefont
 /importer:FontDescriptionImporter
-/processor:LocalizedFontProcessor
+/processor:FontDescriptionProcessor
 /processorParam:PremultiplyAlpha=True
 /processorParam:TextureFormat=Compressed
 /build:fonts/PressStart2P.spritefont
