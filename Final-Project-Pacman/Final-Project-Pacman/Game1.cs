@@ -31,7 +31,8 @@ public class Game1 : Game
     private MazeMap _mazeMap;
     private Pacman _pacman;
     private SoundManager _sound;
-    
+    private DotManager _dotManager;
+
     public Game1()
     {
         _graphics = new GraphicsDeviceManager(this);
@@ -71,6 +72,10 @@ public class Game1 : Game
 
         _pacman = new Pacman(_sound);
         _pacman.LoadContent(Content);
+
+        _dotManager = new DotManager();
+        _dotManager.LoadContent(Content, GraphicsDevice);
+        _dotManager.GenerateDots(_mazeMap);
 
         _sound.PlayBeginning();
     }
@@ -115,6 +120,9 @@ public class Game1 : Game
 
             case GameState.Playing:
                 _pacman.Update(gameTime, _mazeMap);
+                int gained = _dotManager.Update(_pacman);
+                if (gained > 0)
+                    currentScore += gained;
                 break;
         }
 
@@ -150,7 +158,8 @@ public class Game1 : Game
                 new Vector2(400, 10), Color.White);
 
             _spriteBatch.Draw(_mazeTexture, new Rectangle(0, 50, 560, 570), Color.White);
-
+            
+            _dotManager.Draw(_spriteBatch);
             _mazeMap.DrawDebug(_spriteBatch);
 
             _pacman.Draw(_spriteBatch);
