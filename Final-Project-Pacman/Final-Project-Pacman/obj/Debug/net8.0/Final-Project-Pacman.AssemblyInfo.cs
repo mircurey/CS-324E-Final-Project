@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Final-Project-Pacman")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+c8c17822a2b653cebba861548a0ef2f7ef31ccbe")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+3ee8e13aec34842e011878ca79d732946b5a06ce")]
 [assembly: System.Reflection.AssemblyProductAttribute("Final-Project-Pacman")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Final-Project-Pacman")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

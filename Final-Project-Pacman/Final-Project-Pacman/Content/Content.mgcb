@@ -85,6 +85,18 @@
 /processorParam:TextureFormat=Color
 /build:assets/inky.png
 
+#begin assets/MuteVolume.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:assets/MuteVolume.png
+
 #begin assets/pacman-down-1.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -264,6 +276,18 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:assets/strawberry.png
+
+#begin assets/VolumeOn.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:assets/VolumeOn.png
 
 #begin fonts/PressStart2P-Regular.ttf
 /copy:fonts/PressStart2P-Regular.ttf

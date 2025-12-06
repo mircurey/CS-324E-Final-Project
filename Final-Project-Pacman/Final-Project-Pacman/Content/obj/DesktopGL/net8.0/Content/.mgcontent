@@ -10,6 +10,7 @@
     <File>/Users/manasadamarla/CS-324E-Final-Project/Final-Project-Pacman/Final-Project-Pacman/Content/assets/clyde.png</File>
     <File>/Users/manasadamarla/CS-324E-Final-Project/Final-Project-Pacman/Final-Project-Pacman/Content/assets/dot.png</File>
     <File>/Users/manasadamarla/CS-324E-Final-Project/Final-Project-Pacman/Final-Project-Pacman/Content/assets/inky.png</File>
+    <File>/Users/manasadamarla/CS-324E-Final-Project/Final-Project-Pacman/Final-Project-Pacman/Content/assets/MuteVolume.png</File>
     <File>/Users/manasadamarla/CS-324E-Final-Project/Final-Project-Pacman/Final-Project-Pacman/Content/assets/pacman-down-1.png</File>
     <File>/Users/manasadamarla/CS-324E-Final-Project/Final-Project-Pacman/Final-Project-Pacman/Content/assets/pacman-down-2.png</File>
     <File>/Users/manasadamarla/CS-324E-Final-Project/Final-Project-Pacman/Final-Project-Pacman/Content/assets/pacman-down-3.png</File>
@@ -25,6 +26,7 @@
     <File>/Users/manasadamarla/CS-324E-Final-Project/Final-Project-Pacman/Final-Project-Pacman/Content/assets/pacmaze.png</File>
     <File>/Users/manasadamarla/CS-324E-Final-Project/Final-Project-Pacman/Final-Project-Pacman/Content/assets/pinky.png</File>
     <File>/Users/manasadamarla/CS-324E-Final-Project/Final-Project-Pacman/Final-Project-Pacman/Content/assets/strawberry.png</File>
+    <File>/Users/manasadamarla/CS-324E-Final-Project/Final-Project-Pacman/Final-Project-Pacman/Content/assets/VolumeOn.png</File>
     <File>/Users/manasadamarla/CS-324E-Final-Project/Final-Project-Pacman/Final-Project-Pacman/Content/fonts/PressStart2P.spritefont</File>
     <File>/Users/manasadamarla/CS-324E-Final-Project/Final-Project-Pacman/Final-Project-Pacman/Content/pacman_beginning.wav</File>
     <File>/Users/manasadamarla/CS-324E-Final-Project/Final-Project-Pacman/Final-Project-Pacman/Content/pacman_chomp.wav</File>
@@ -35,6 +37,8 @@
     <File>/Users/manasadamarla/CS-324E-Final-Project/Final-Project-Pacman/Final-Project-Pacman/Content/pacman_intermission.wav</File>
   </SourceFiles>
   <DestFiles>
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />

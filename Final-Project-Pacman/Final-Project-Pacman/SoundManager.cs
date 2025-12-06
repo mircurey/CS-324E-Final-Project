@@ -16,6 +16,10 @@ namespace Final_Project_Pacman
         // Beginning music needs an instance so we can loop/stop it
         private SoundEffect _beginningEffect;
         private SoundEffectInstance _beginningInstance;
+        private bool _muted;
+        public bool IsMuted => _muted;
+        
+
 
         public void LoadContent(ContentManager Content)
         {
@@ -35,15 +39,39 @@ namespace Final_Project_Pacman
                 _beginningInstance.IsLooped = true;
             }
         }
+        public void SetMuted(bool muted)
+        {
+            _muted = muted;
+
+            if (_muted)
+            {
+                if (_beginningInstance != null &&
+                    _beginningInstance.State == SoundState.Playing)
+                {
+                    _beginningInstance.Pause();
+                }
+            }
+            else
+            {
+                if (_beginningInstance != null &&
+                    _beginningInstance.State != SoundState.Playing)
+                {
+                    _beginningInstance.Play();
+                }
+            }
+        }
+
 
         // Play/Stop control for beginning music
         public void PlayBeginning()
         {
-            // if already playing do nothing
             if (_beginningInstance == null) return;
+            if (_muted) return;
+
             if (_beginningInstance.State != SoundState.Playing)
                 _beginningInstance.Play();
         }
+
 
         public void StopBeginning()
         {

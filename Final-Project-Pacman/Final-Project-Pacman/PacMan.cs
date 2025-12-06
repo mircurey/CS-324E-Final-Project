@@ -119,8 +119,8 @@ namespace Final_Project_Pacman
                 _animTimer -= _animInterval;
                 _frameIndex = (_frameIndex + 1) % _frames[CurrentDirection.ToString()].Length;
 
-                if (_frameIndex == 0 && _sound?.Chomp != null)
-                    _sound.Chomp.Play();
+                if (_frameIndex == 0)
+                    PlayEatDot();   // ✅ respects mute
             }
         }
 
@@ -144,10 +144,31 @@ namespace Final_Project_Pacman
 
         public Rectangle Bounds => new Rectangle((int)Position.X, (int)Position.Y, Size, Size);
 
-        public void PlayEatDot() => _sound?.Chomp?.Play();
-        public void PlayEatFruit() => _sound?.EatFruit?.Play();
-        public void PlayDeath() => _sound?.Death?.Play();
-        public void PlayEatGhost() => _sound?.EatGhost?.Play();
+        public void PlayEatDot()
+        {
+            if (_sound != null && !_sound.IsMuted && _sound.Chomp != null)
+                _sound.Chomp.Play();
+        }
+
+        public void PlayEatFruit()
+        {
+            if (_sound != null && !_sound.IsMuted && _sound.EatFruit != null)
+                _sound.EatFruit.Play();
+        }
+
+        public void PlayDeath()
+        {
+            if (_sound != null && !_sound.IsMuted && _sound.Death != null)
+                _sound.Death.Play();
+        }
+
+        public void PlayEatGhost()
+        {
+            if (_sound != null && !_sound.IsMuted && _sound.EatGhost != null)
+                _sound.EatGhost.Play();
+        }
+
+
     }
 }
 

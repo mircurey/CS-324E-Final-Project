@@ -33,6 +33,10 @@ public class Game1 : Game
     private SoundManager _sound;
     private DotManager _dotManager;
     private GameTimer _timer;
+    private Texture2D _muteTex;
+    private Texture2D _volumeTex;
+    private Rectangle _soundButtonRect;
+    private MouseState _prevMouse;
 
 
     public Game1()
@@ -64,10 +68,17 @@ public class Game1 : Game
         _inkyTexture = Content.Load<Texture2D>("assets/inky");
         _clydeTexture = Content.Load<Texture2D>("assets/clyde");
 
+        _muteTex   = Content.Load<Texture2D>("assets/MuteVolume");
+        _volumeTex = Content.Load<Texture2D>("assets/VolumeOn");
+        int btnX = _graphics.PreferredBackBufferWidth - _muteTex.Width - 10;
+        int btnY = 40;  
+        _soundButtonRect = new Rectangle(btnX, btnY, _muteTex.Width, _muteTex.Height);
+
         highScore = new HighScore();
 
         _sound = new SoundManager();
         _sound.LoadContent(Content);
+        _sound.SetMuted(false);
 
         Rectangle mazeDrawRect = new Rectangle(0, 50, 560, 570);
         _mazeMap = new MazeMap(_mazeTexture, mazeDrawRect);
@@ -87,6 +98,19 @@ public class Game1 : Game
     protected override void Update(GameTime gameTime)
     {
         KeyboardState currentKState = Keyboard.GetState();
+
+        MouseState mouse = Mouse.GetState();
+        if (_currentState == GameState.Playing)   
+        {
+            if (mouse.LeftButton == ButtonState.Pressed &&
+                _prevMouse.LeftButton == ButtonState.Released &&
+                _soundButtonRect.Contains(mouse.Position))
+            {
+                bool newMuted = !_sound.IsMuted;
+                _sound.SetMuted(newMuted);
+            }
+        }
+        _prevMouse = mouse;
 
         if (currentKState.IsKeyDown(Keys.M) && _previousKState.IsKeyUp(Keys.M))
         {
@@ -114,9 +138,8 @@ public class Game1 : Game
                 if (currentKState.IsKeyDown(Keys.Space) && _previousKState.IsKeyUp(Keys.Space))
                 {
                     _currentState = GameState.Playing;
-                    currentScore = 0;        // reset score for new game
-                    _timer.Start();
-                    _sound.StopBeginning();  // stop intro on game start
+                    currentScore = 0;        
+                    _timer.Start(); 
                 }
 
                 if (currentKState.IsKeyDown(Keys.I) && _previousKState.IsKeyUp(Keys.I))
@@ -170,9 +193,9 @@ public class Game1 : Game
                 new Vector2(10, 10), Color.White);
 
             _spriteBatch.DrawString(_font, "HIGH: " + highScore.Value.ToString(),
-                new Vector2(400, 10), Color.White);
+                new Vector2(370, 10), Color.White);
             string timeText = "TIME: " + _timer.RemainingSeconds.ToString();
-            _spriteBatch.DrawString(_font, timeText, new Vector2(230, 10), Color.White);
+            _spriteBatch.DrawString(_font, timeText, new Vector2(210, 10), Color.White);
 
 
             _spriteBatch.Draw(_mazeTexture, new Rectangle(0, 50, 560, 570), Color.White);
@@ -184,8 +207,27 @@ public class Game1 : Game
 
             foreach (var g in _ghosts)
                 g.Draw(_spriteBatch);
-        }
+            if (_sound != null)
+            {
+                Texture2D icon = _sound.IsMuted ? _muteTex : _volumeTex;
 
+                float scale = 0.10f;  
+
+                _spriteBatch.Draw(
+                    icon,
+                    new Vector2(_soundButtonRect.X + 590, _soundButtonRect.Y - 23), 
+                    null,
+                    Color.White,
+                    0f,
+                    Vector2.Zero,
+                    scale,       
+                    SpriteEffects.None,
+                    0f
+                );
+
+            }
+
+        }
         _spriteBatch.End();
         base.Draw(gameTime);
     }
