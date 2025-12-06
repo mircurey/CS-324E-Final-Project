@@ -32,6 +32,8 @@ public class Game1 : Game
     private Pacman _pacman;
     private SoundManager _sound;
     private DotManager _dotManager;
+    private GameTimer _timer;
+
 
     public Game1()
     {
@@ -78,6 +80,8 @@ public class Game1 : Game
         _dotManager.GenerateDots(_mazeMap);
 
         _sound.PlayBeginning();
+        _timer = new GameTimer(60);
+
     }
 
     protected override void Update(GameTime gameTime)
@@ -87,6 +91,7 @@ public class Game1 : Game
         if (currentKState.IsKeyDown(Keys.M) && _previousKState.IsKeyUp(Keys.M))
         {
             _currentState = GameState.MainMenu;
+            currentScore = 0;       // reset score
             _sound.PlayBeginning();     // restart intro music
         }
 
@@ -109,6 +114,8 @@ public class Game1 : Game
                 if (currentKState.IsKeyDown(Keys.Space) && _previousKState.IsKeyUp(Keys.Space))
                 {
                     _currentState = GameState.Playing;
+                    currentScore = 0;        // reset score for new game
+                    _timer.Start();
                     _sound.StopBeginning();  // stop intro on game start
                 }
 
@@ -123,6 +130,14 @@ public class Game1 : Game
                 int gained = _dotManager.Update(_pacman);
                 if (gained > 0)
                     currentScore += gained;
+                _timer.Update(gameTime);   // 🔵 UPDATE TIMER
+
+                if (!_timer.IsRunning && _timer.RemainingSeconds == 0)
+                {
+                    highScore.Save(currentScore);
+                    _sound.PlayBeginning();
+                    _currentState = GameState.InfoScreen;
+                }
                 break;
         }
 
@@ -156,6 +171,9 @@ public class Game1 : Game
 
             _spriteBatch.DrawString(_font, "HIGH: " + highScore.Value.ToString(),
                 new Vector2(400, 10), Color.White);
+            string timeText = "TIME: " + _timer.RemainingSeconds.ToString();
+            _spriteBatch.DrawString(_font, timeText, new Vector2(230, 10), Color.White);
+
 
             _spriteBatch.Draw(_mazeTexture, new Rectangle(0, 50, 560, 570), Color.White);
             
