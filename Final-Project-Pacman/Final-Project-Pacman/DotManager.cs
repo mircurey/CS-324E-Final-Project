@@ -15,6 +15,13 @@ namespace Final_Project_Pacman
         public int ScoreValue = 10;
         public int FruitValue = 100;
 
+        private Texture2D _appleTex;
+        private Rectangle _apple1Rect;
+        private Rectangle _apple2Rect;
+
+        public int AppleValue = 50;
+
+
         public void LoadContent(Microsoft.Xna.Framework.Content.ContentManager content,
                                 GraphicsDevice graphicsDevice)
         {
@@ -22,6 +29,9 @@ namespace Final_Project_Pacman
 
             _dotTex = new Texture2D(graphicsDevice, 1, 1);
             _dotTex.SetData(new[] { Color.White });
+
+            _appleTex = content.Load<Texture2D>("assets/apple");
+
         }
 
         public void GenerateDots(MazeMap maze)
@@ -94,6 +104,9 @@ namespace Final_Project_Pacman
             }
 
             _fruitRect = new Rectangle(270, 300 + shiftY + 20, 16, 16);
+            _apple1Rect = new Rectangle(500, 92 + shiftY, 16, 16);
+
+            _apple2Rect = new Rectangle(260, 479 + shiftY, 16, 16);
         }
 
 
@@ -118,6 +131,22 @@ namespace Final_Project_Pacman
                 _fruitRect = Rectangle.Empty;
             }
 
+            // Apple 1
+            if (_apple1Rect != Rectangle.Empty && pac.Bounds.Intersects(_apple1Rect))
+            {
+                score += AppleValue;
+                pac.PlayEatFruit();
+                _apple1Rect = Rectangle.Empty;
+            }
+
+            // Apple 2
+            if (_apple2Rect != Rectangle.Empty && pac.Bounds.Intersects(_apple2Rect))
+            {
+                score += AppleValue;
+                pac.PlayEatFruit();
+                _apple2Rect = Rectangle.Empty;
+            }
+
             return score;
         }
 
@@ -127,6 +156,15 @@ namespace Final_Project_Pacman
             {
                 var bigDot = new Rectangle(dot.X - 2, dot.Y - 2, dot.Width + 6, dot.Height + 6);
                 sb.Draw(_dotTex, dot, Color.Yellow);
+            }
+
+            if (_appleTex != null)
+            {
+                if (_apple1Rect != Rectangle.Empty)
+                    sb.Draw(_appleTex, _apple1Rect, Color.White);
+
+                if (_apple2Rect != Rectangle.Empty)
+                    sb.Draw(_appleTex, _apple2Rect, Color.White);
             }
 
             if (_fruitRect != Rectangle.Empty && _fruitTex != null)
