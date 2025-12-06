@@ -9,7 +9,8 @@ public enum GameState
 {
     MainMenu,
     Playing,
-    InfoScreen
+    InfoScreen,
+    GameOver
 }
 
 public class Game1 : Game
@@ -27,6 +28,7 @@ public class Game1 : Game
     private KeyboardState _previousKState;
     private HighScore highScore;
     private int currentScore = 0;
+    private bool _isNewHighScore = false;
 
     private MazeMap _mazeMap;
     private Pacman _pacman;
@@ -140,6 +142,7 @@ public class Game1 : Game
                     _currentState = GameState.Playing;
                     currentScore = 0;        
                     _timer.Start(); 
+                    _dotManager.GenerateDots(_mazeMap);
                 }
 
                 if (currentKState.IsKeyDown(Keys.I) && _previousKState.IsKeyUp(Keys.I))
@@ -153,15 +156,25 @@ public class Game1 : Game
                 int gained = _dotManager.Update(_pacman);
                 if (gained > 0)
                     currentScore += gained;
-                _timer.Update(gameTime);   // 🔵 UPDATE TIMER
+                _timer.Update(gameTime);   
 
                 if (!_timer.IsRunning && _timer.RemainingSeconds == 0)
                 {
-                    highScore.Save(currentScore);
-                    _sound.PlayBeginning();
-                    _currentState = GameState.InfoScreen;
+                    _isNewHighScore = currentScore > highScore.Value;
+
+                    highScore.Save(currentScore);   
+                    _sound.PlayBeginning();        
+                    _currentState = GameState.GameOver;  
                 }
                 break;
+            
+            case GameState.GameOver:
+                if (currentKState.IsKeyDown(Keys.Space) && _previousKState.IsKeyUp(Keys.Space))
+                {
+                    _currentState = GameState.MainMenu;
+                }
+                break;
+
         }
 
         _previousKState = currentKState;
@@ -187,15 +200,33 @@ public class Game1 : Game
             DrawTextCentered("details, and objective]", 175, Color.White);
             DrawTextCentered("HIGH SCORE: " + highScore.Value.ToString("D4"), 300, Color.Red);
         }
+        else if (_currentState == GameState.GameOver)
+        {
+            DrawTextCenteredScaled("GAME OVER!!!", 90, Color.Red, 2.3f);
+
+
+            if (_isNewHighScore)
+            {
+                DrawTextCentered("NEW HIGHSCORE!!", 200, Color.Yellow);
+                DrawTextCentered("SCORE: " + currentScore.ToString(), 260, Color.White);
+            }
+            else
+            {
+                DrawTextCentered("SCORE: " + currentScore.ToString(), 220, Color.White);
+                DrawTextCentered("HIGH SCORE: " + highScore.Value.ToString("D4"), 260, Color.Yellow);
+            }
+
+            DrawTextCentered("Press SPACE for Main Menu", 340, Color.Cyan);
+        }
         else if (_currentState == GameState.Playing)
         {
             _spriteBatch.DrawString(_font, "SCORE: " + currentScore.ToString(),
                 new Vector2(10, 10), Color.White);
 
             _spriteBatch.DrawString(_font, "HIGH: " + highScore.Value.ToString(),
-                new Vector2(370, 10), Color.White);
+                new Vector2(375, 10), Color.White);
             string timeText = "TIME: " + _timer.RemainingSeconds.ToString();
-            _spriteBatch.DrawString(_font, timeText, new Vector2(210, 10), Color.White);
+            _spriteBatch.DrawString(_font, timeText, new Vector2(218, 10), Color.White);
 
 
             _spriteBatch.Draw(_mazeTexture, new Rectangle(0, 50, 560, 570), Color.White);
@@ -239,4 +270,26 @@ public class Game1 : Game
         _spriteBatch.DrawString(_font, text,
             new Vector2((_graphics.PreferredBackBufferWidth - textSize.X) / 2, y), color);
     }
+
+    private void DrawTextCenteredScaled(string text, float y, Color color, float scale)
+    {
+        if (_font == null) return;
+
+        Vector2 size = _font.MeasureString(text);
+        float x = (_graphics.PreferredBackBufferWidth - size.X * scale) / 2f;
+
+        _spriteBatch.DrawString(
+            _font,
+            text,
+            new Vector2(x, y),
+            color,
+            0f,
+            Vector2.Zero,
+            scale,            
+            SpriteEffects.None,
+            0f
+        );
+    }
+
+
 }
