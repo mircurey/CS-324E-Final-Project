@@ -21,12 +21,20 @@ namespace Final_Project_Pacman
 
         public void Start()
         {
-            _remainingSeconds = _durationSeconds;
+            if (_remainingSeconds <= 0) // reset if timer finished
+                _remainingSeconds = _durationSeconds;
+
             IsRunning = true;
         }
 
         public void Stop()
         {
+            IsRunning = false;
+        }
+
+        public void Reset()
+        {
+            _remainingSeconds = _durationSeconds;
             IsRunning = false;
         }
 

@@ -11,6 +11,7 @@ namespace Final_Project_Pacman
         public Vector2 Position;
         public string Name;
         public float Speed = 80f;
+        public Rectangle Bounds => new Rectangle((int)Position.X, (int)Position.Y, Size, Size);
 
         public enum Direction { Up, Down, Left, Right }
         public Direction CurrentDirection;
