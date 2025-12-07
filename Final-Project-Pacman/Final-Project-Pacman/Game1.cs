@@ -21,6 +21,8 @@ public class Game1 : Game
     private SpriteFont _font;
     private Texture2D _mazeTexture;
     private Texture2D _blinkyTexture, _pinkyTexture, _inkyTexture, _clydeTexture;
+    private Ghost _blinky, _pinky, _inky, _clyde;
+    private double _totalGhostTimer = 0;
     
     private List<Ghost> _ghosts;
         
@@ -75,6 +77,31 @@ public class Game1 : Game
         int btnX = _graphics.PreferredBackBufferWidth - _muteTex.Width - 10;
         int btnY = 40;  
         _soundButtonRect = new Rectangle(btnX, btnY, _muteTex.Width, _muteTex.Height);
+        
+        _ghosts = new List<Ghost>();
+
+        Vector2 blinkyStart = new Vector2(260, 260); // above ghost house
+        Vector2 inkyStart   = new Vector2(230, 300);
+        Vector2 pinkyStart  = new Vector2(230, 300); 
+        Vector2 clydeStart  = new Vector2(290, 300); 
+
+        _blinky = new Ghost(_blinkyTexture, GraphicsDevice, blinkyStart, "blinky");
+        _inky   = new Ghost(_inkyTexture, GraphicsDevice, inkyStart, "inky");
+        _pinky  = new Ghost(_pinkyTexture, GraphicsDevice, pinkyStart, "pinky");
+        _clyde  = new Ghost(_clydeTexture, GraphicsDevice, clydeStart, "clyde");
+
+        _ghosts.Add(_blinky);
+        _ghosts.Add(_inky);
+        _ghosts.Add(_pinky);
+        _ghosts.Add(_clyde);
+
+        _blinky.IsReleased = true; // blinky starts moving immediately
+        _pinky.IsReleased = false;
+        _inky.IsReleased = false;
+        _clyde.IsReleased = false;
+
+        _totalGhostTimer = 0;
+
 
         highScore = new HighScore();
 
@@ -152,21 +179,49 @@ public class Game1 : Game
                 break;
 
             case GameState.Playing:
+                _totalGhostTimer += gameTime.ElapsedGameTime.TotalSeconds;
+                
+                // Pinky: release after 1 second
+                if (_totalGhostTimer >= 1 && !_pinky.IsReleased)
+                {
+                    _pinky.IsReleased = true;
+                    _pinky.IsMovingOutOfHouse = true;
+                }
+
+                // Inky: release after 3 seconds
+                if (_totalGhostTimer >= 3 && !_inky.IsReleased)
+                {
+                    _inky.IsReleased = true;
+                    _inky.IsMovingOutOfHouse = true;
+                }
+
+                // Clyde: release after 6 seconds
+                if (_totalGhostTimer >= 6 && !_clyde.IsReleased)
+                {
+                    _clyde.IsReleased = true;
+                    _clyde.IsMovingOutOfHouse = true;
+                }
+
+                foreach (var g in _ghosts)
+                    g.Update(gameTime, _mazeMap);
+
                 _pacman.Update(gameTime, _mazeMap);
+
                 int gained = _dotManager.Update(_pacman);
                 if (gained > 0)
                     currentScore += gained;
-                _timer.Update(gameTime);   
+
+                _timer.Update(gameTime);
 
                 if (!_timer.IsRunning && _timer.RemainingSeconds == 0)
                 {
                     _isNewHighScore = currentScore > highScore.Value;
-
-                    highScore.Save(currentScore);   
-                    _sound.PlayBeginning();        
-                    _currentState = GameState.GameOver;  
+                    highScore.Save(currentScore);
+                    _sound.PlayBeginning();
+                    _currentState = GameState.GameOver;
                 }
                 break;
+
             
             case GameState.GameOver:
                 if (currentKState.IsKeyDown(Keys.Space) && _previousKState.IsKeyUp(Keys.Space))

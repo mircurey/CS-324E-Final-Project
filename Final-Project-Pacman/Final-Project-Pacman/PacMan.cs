@@ -61,29 +61,61 @@ namespace Final_Project_Pacman
 
         public void Update(GameTime gameTime, MazeMap maze)
         {
-            float dt = (float)gameTime.ElapsedGameTime.TotalMilliseconds;
-            Vector2 dir = Vector2.Zero;
+            float dt = (float)gameTime.ElapsedGameTime.TotalSeconds;
+            Vector2 inputDir = Vector2.Zero;
 
             KeyboardState ks = Keyboard.GetState();
-            if (ks.IsKeyDown(Keys.Up)) { dir = new Vector2(0, -1); CurrentDirection = Direction.Up; }
-            else if (ks.IsKeyDown(Keys.Down)) { dir = new Vector2(0, 1); CurrentDirection = Direction.Down; }
-            else if (ks.IsKeyDown(Keys.Left)) { dir = new Vector2(-1, 0); CurrentDirection = Direction.Left; }
-            else if (ks.IsKeyDown(Keys.Right)) { dir = new Vector2(1, 0); CurrentDirection = Direction.Right; }
-            else dir = Vector2.Zero;
+            if (ks.IsKeyDown(Keys.Up)) inputDir = new Vector2(0, -1);
+            else if (ks.IsKeyDown(Keys.Down)) inputDir = new Vector2(0, 1);
+            else if (ks.IsKeyDown(Keys.Left)) inputDir = new Vector2(-1, 0);
+            else if (ks.IsKeyDown(Keys.Right)) inputDir = new Vector2(1, 0);
 
-            IsMoving = dir != Vector2.Zero;
-
-            float step = Speed * (float)gameTime.ElapsedGameTime.TotalSeconds;
-            Vector2 next = Position + dir * step;
-
-            if (IsMoving)
+            // only change direction if the new direction is not blocked
+            if (inputDir != Vector2.Zero)
             {
+                Vector2 nextInputPos = Position + inputDir * Speed * dt;
+                if (!CollidesWithWall(nextInputPos, maze))
+                {
+                    inputDir.Normalize();
+                    Position += inputDir * Speed * dt;
+                    CurrentDirection = inputDir switch
+                    {
+                        var v when v == new Vector2(0, -1) => Direction.Up,
+                        var v when v == new Vector2(0, 1) => Direction.Down,
+                        var v when v == new Vector2(-1, 0) => Direction.Left,
+                        var v when v == new Vector2(1, 0) => Direction.Right,
+                        _ => CurrentDirection
+                    };
+                    IsMoving = true;
+                }
+            }
+            else
+            {
+                // continue moving in current direction if path is clear
+                Vector2 dir = CurrentDirection switch
+                {
+                    Direction.Up => new Vector2(0, -1),
+                    Direction.Down => new Vector2(0, 1),
+                    Direction.Left => new Vector2(-1, 0),
+                    Direction.Right => new Vector2(1, 0),
+                    _ => Vector2.Zero
+                };
+
+                Vector2 next = Position + dir * Speed * dt;
                 if (!CollidesWithWall(next, maze))
+                {
                     Position = next;
+                    IsMoving = true;
+                }
+                else
+                {
+                    IsMoving = false;
+                }
             }
 
             Animate(gameTime);
         }
+
 
         private bool CollidesWithWall(Vector2 worldPos, MazeMap maze)
         {
@@ -120,7 +152,7 @@ namespace Final_Project_Pacman
                 _frameIndex = (_frameIndex + 1) % _frames[CurrentDirection.ToString()].Length;
 
                 if (_frameIndex == 0)
-                    PlayEatDot();   // ✅ respects mute
+                    PlayEatDot();
             }
         }
 
