@@ -259,7 +259,7 @@ public class Game1 : Game
             DrawTextCentered("Arrow Keys - Move Pac-Man", 150, Color.White);
             DrawTextCentered("ESC - Exit to Main Menu", 180, Color.White);
             DrawTextCentered("Objective:", 220, Color.Yellow);
-            DrawTextCentered("Eat all the dots", 250, Color.White);
+            DrawTextCentered("Eat as many pellets as you can", 250, Color.White);
             DrawTextCentered("while avoiding ghosts.", 270, Color.White);
             DrawTextCentered("HIGH SCORE: " + highScore.Value.ToString("D4"), 300, Color.Red);
         }
