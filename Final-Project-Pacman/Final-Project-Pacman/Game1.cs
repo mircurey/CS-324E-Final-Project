@@ -90,7 +90,8 @@ public class Game1 : Game
         _pacman.LoadContent(Content);
 
         _dotManager = new DotManager();
-        _dotManager.LoadContent(Content, GraphicsDevice);
+        _dotManager.LoadContent(Content, GraphicsDevice); // sets dot textures & basic data
+        _dotManager.GenerateDots(_mazeMap); // builds dots & internal rail mask
 
         _timer = new GameTimer(60);
 
@@ -103,9 +104,10 @@ public class Game1 : Game
         _timer.Start();
         _dotManager.GenerateDots(_mazeMap);
         
-        // Reset Pac-Man position
-        _pacman.Position = new Vector2(20, 315);
+        // Reset Pac-Man position and direction
+        _pacman.Position = _dotManager.GridToWorldCenter(14, 1); // example center tile; adjust if needed
         _pacman.CurrentDirection = Pacman.Direction.Right;
+        _pacman.ResetState();
 
         // Reset ghosts
         Vector2 blinkyStart = new Vector2(260, 260);
@@ -140,12 +142,23 @@ public class Game1 : Game
         KeyboardState currentKState = Keyboard.GetState();
         MouseState mouse = Mouse.GetState();
 
+        // Toggle music (M) and sfx (K)
+        if (currentKState.IsKeyDown(Keys.M) && _previousKState.IsKeyUp(Keys.M))
+        {
+            _sound.ToggleMusic();
+        }
+        if (currentKState.IsKeyDown(Keys.K) && _previousKState.IsKeyUp(Keys.K))
+        {
+            _sound.ToggleSfx();
+        }
+
         if (_currentState == GameState.Playing)
         {
             if (mouse.LeftButton == ButtonState.Pressed &&
                 _prevMouse.LeftButton == ButtonState.Released &&
                 _soundButtonRect.Contains(mouse.Position))
             {
+                // Old behavior: toggle both. Keep for UI button compatibility.
                 _sound.SetMuted(!_sound.IsMuted);
             }
         }
@@ -168,7 +181,7 @@ public class Game1 : Game
             if (currentKState.IsKeyDown(Keys.Escape) && _previousKState.IsKeyUp(Keys.Escape))
             {
                 _currentState = GameState.MainMenu;
-                _previousKState = Keyboard.GetState(); // prevent Space being ignored
+                _previousKState = Keyboard.GetState(); // prevent key bleed
             }
         }
 
@@ -182,21 +195,17 @@ public class Game1 : Game
         {
             _totalGhostTimer += gameTime.ElapsedGameTime.TotalSeconds;
 
-            // Pinky: release after 1 second
+            // staged ghost releases
             if (_totalGhostTimer >= 1 && !_pinky.IsReleased)
             {
                 _pinky.IsReleased = true;
                 _pinky.IsMovingOutOfHouse = true;
             }
-
-            // Inky: release after 3 seconds
             if (_totalGhostTimer >= 3 && !_inky.IsReleased)
             {
                 _inky.IsReleased = true;
                 _inky.IsMovingOutOfHouse = true;
             }
-
-            // Clyde: release after 6 seconds
             if (_totalGhostTimer >= 6 && !_clyde.IsReleased)
             {
                 _clyde.IsReleased = true;
@@ -206,32 +215,44 @@ public class Game1 : Game
             foreach (var g in _ghosts)
                 g.Update(gameTime, _mazeMap);
 
-            _pacman.Update(gameTime, _mazeMap);
+            // pass dotManager also for rail logic
+            _pacman.Update(gameTime, _mazeMap, _dotManager);
 
-            foreach (var g in _ghosts)
-            {
-                if (g.Bounds.Intersects(_pacman.Bounds))
-                {
-                    _sound.PlayDeath();
-                    _isNewHighScore = currentScore > highScore.Value;
-                    highScore.Save(currentScore);
-                    _currentState = GameState.GameOver;
-                    break;
-                }
-            }
-
-            int gained = _dotManager.Update(_pacman);
-            if (gained > 0)
-                currentScore += gained;
-
-            _timer.Update(gameTime);
-
-            if (!_timer.IsRunning && _timer.RemainingSeconds == 0)
+            // If Pacman is in dying animation, wait for it to finish before switching to GameOver
+            if (_pacman.CurrentAnimationState == Pacman.AnimationState.Dead)
             {
                 _isNewHighScore = currentScore > highScore.Value;
                 highScore.Save(currentScore);
                 _sound.PlayBeginning();
                 _currentState = GameState.GameOver;
+            }
+            else
+            {
+                // check collisions while not currently dying
+                foreach (var g in _ghosts)
+                {
+                    if (!_pacman.IsDying && g.Bounds.Intersects(_pacman.Bounds))
+                    {
+                        // start dying animation — pacman will become Dead after animation completes
+                        _pacman.StartDying();
+                        _sound.PlayDeath();
+                        break;
+                    }
+                }
+
+                int gained = _dotManager.Update(_pacman);
+                if (gained > 0)
+                    currentScore += gained;
+
+                _timer.Update(gameTime);
+
+                if (!_timer.IsRunning && _timer.RemainingSeconds == 0)
+                {
+                    _isNewHighScore = currentScore > highScore.Value;
+                    highScore.Save(currentScore);
+                    _sound.PlayBeginning();
+                    _currentState = GameState.GameOver;
+                }
             }
         }
 
@@ -251,6 +272,7 @@ public class Game1 : Game
 
             DrawTextCentered("Press SPACE to Start", 300, Color.White);
             DrawTextCentered("Press 'I' for Info & Score", 350, Color.Cyan);
+            DrawTextCentered("M = Toggle Music, K = Toggle SFX", 420, Color.LightGray);
         }
         else if (_currentState == GameState.InfoScreen)
         {
@@ -296,7 +318,9 @@ public class Game1 : Game
             foreach (var g in _ghosts)
                 g.Draw(_spriteBatch);
 
+            // draw mute/volume icon (button)
             Texture2D icon = _sound.IsMuted ? _muteTex : _volumeTex;
+            // scale icon down to 10% and position near top-right
             _spriteBatch.Draw(icon, new Vector2(_soundButtonRect.X + 590, _soundButtonRect.Y - 23), null, Color.White, 0f, Vector2.Zero, 0.10f, SpriteEffects.None, 0f);
         }
 
