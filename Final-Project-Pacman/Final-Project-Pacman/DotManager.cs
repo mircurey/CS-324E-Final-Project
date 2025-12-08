@@ -21,7 +21,7 @@ namespace Final_Project_Pacman
 
         public int AppleValue = 50;
 
-        // grid info used as rails
+        
         private string[] mask;
         private int rows;
         private int cols;
@@ -29,7 +29,7 @@ namespace Final_Project_Pacman
         private int offsetX = 0;
         private int offsetY = 50;
         private int pelletSize = 6;
-        private bool[,] rail; // true if tile is a rail (dot present)
+        private bool[,] rail; 
 
         public void LoadContent(Microsoft.Xna.Framework.Content.ContentManager content,
                                 GraphicsDevice graphicsDevice)
@@ -97,7 +97,7 @@ namespace Final_Project_Pacman
                     int px = offsetX + col * tile + tile / 2;
                     int py = offsetY + row * tile + tile / 2;
 
-                    // tiny per-row offsets used earlier
+                   
                     int shiftY = -3;
                     int extraShift = 7;
                     if (row == 5 || row == 13 || row == 21) py += extraShift;
@@ -113,7 +113,7 @@ namespace Final_Project_Pacman
             _apple2Rect = new Rectangle(260, 479, 16, 16);
         }
 
-        // returns true if the provided grid cell is a rail
+       
         public bool IsRailAtGrid(int row, int col)
         {
             if (rail == null) return false;
@@ -121,13 +121,13 @@ namespace Final_Project_Pacman
             return rail[row, col];
         }
 
-        // convert world position (pixels) to grid cell
+       
         public Point WorldToGrid(Vector2 world)
         {
             int cx = (int)world.X;
             int cy = (int)world.Y;
 
-            // reverse the shifts used when generating to find nearest cell approx
+            
             int localY = cy - offsetY;
             if (localY < 0) localY = 0;
 
@@ -141,14 +141,14 @@ namespace Final_Project_Pacman
             return new Point(row, col);
         }
 
-        // returns true if a world position lands on a rail tile
+        
         public bool IsRailAtWorld(Vector2 world)
         {
             var p = WorldToGrid(world);
             return IsRailAtGrid(p.X, p.Y);
         }
 
-        // helper to get center world position of a grid cell (for snapping)
+        
         public Vector2 GridToWorldCenter(int row, int col)
         {
             int sx = offsetX + col * tile + tile / 2;
@@ -159,8 +159,7 @@ namespace Final_Project_Pacman
             return new Vector2(sx, sy);
         }
 
-        // Determine if Pacman can move from current world position in the requested direction
-        // by checking whether the next tile in that direction contains a rail.
+        
         public bool CanMoveFromWorld(Vector2 worldPos, Pacman.Direction desiredDir, float speed, float dt)
         {
             Point grid = WorldToGrid(worldPos);
@@ -177,10 +176,10 @@ namespace Final_Project_Pacman
                 case Pacman.Direction.Right: nc = col + 1; break;
             }
 
-            // If next cell is rail -> allowed
+            
             if (IsRailAtGrid(nr, nc)) return true;
 
-            // fallback: if the exact world pixel ahead is not a wall (color detection), allow it
+            
             Vector2 dirVec = desiredDir switch
             {
                 Pacman.Direction.Up => new Vector2(0, -1),
@@ -191,7 +190,7 @@ namespace Final_Project_Pacman
             };
 
             Vector2 probe = worldPos + dirVec * speed * dt;
-            return ! /* will be checked by caller: MazeMap.IsWallAtWorld(probe) */ false;
+            return ! false;
         }
 
         public int Update(Pacman pac)

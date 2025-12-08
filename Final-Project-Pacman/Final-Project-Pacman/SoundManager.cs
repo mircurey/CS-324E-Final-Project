@@ -18,20 +18,20 @@ namespace Final_Project_Pacman
         private bool _allMuted = false;
         public bool IsMuted => _allMuted;
 
-        // separate flags
+        
         public bool MusicMuted { get; private set; } = false;
         public bool SfxMuted { get; private set; } = false;
-        public bool SfxMutedPublic => SfxMuted; // optional external read
+        public bool SfxMutedPublic => SfxMuted; 
 
         public bool SfxMutedGetter => SfxMuted;
         public bool SfxMutedSetter { set { SfxMuted = value; } }
 
-        // provide simple property used by other code
+        
         public bool SfxMutedProp => SfxMuted;
 
         public bool SfxMutedPublicAccessor => SfxMuted;
 
-        // expose for compatibility
+        
         public bool SfxMutedAccess => SfxMuted;
 
         public void LoadContent(ContentManager Content)
@@ -51,7 +51,7 @@ namespace Final_Project_Pacman
             }
         }
 
-        // Old compatibility method toggling both music & sfx
+       
         public void SetMuted(bool muted)
         {
             _allMuted = muted;
@@ -85,7 +85,7 @@ namespace Final_Project_Pacman
             }
         }
 
-        // Toggle sfx only
+        
         public void ToggleSfx()
         {
             SfxMuted = !SfxMuted;

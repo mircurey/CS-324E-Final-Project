@@ -90,8 +90,8 @@ public class Game1 : Game
         _pacman.LoadContent(Content);
 
         _dotManager = new DotManager();
-        _dotManager.LoadContent(Content, GraphicsDevice); // sets dot textures & basic data
-        _dotManager.GenerateDots(_mazeMap); // builds dots & internal rail mask
+        _dotManager.LoadContent(Content, GraphicsDevice);
+        _dotManager.GenerateDots(_mazeMap); 
 
         _timer = new GameTimer(60);
 
@@ -104,12 +104,12 @@ public class Game1 : Game
         _timer.Start();
         _dotManager.GenerateDots(_mazeMap);
         
-        // Reset Pac-Man position and direction
-        _pacman.Position = _dotManager.GridToWorldCenter(14, 1); // example center tile; adjust if needed
+        
+        _pacman.Position = _dotManager.GridToWorldCenter(14, 1); 
         _pacman.CurrentDirection = Pacman.Direction.Right;
         _pacman.ResetState();
 
-        // Reset ghosts
+        
         Vector2 blinkyStart = new Vector2(260, 260);
         Vector2 inkyStart   = new Vector2(230, 300);
         Vector2 pinkyStart  = new Vector2(230, 300);
@@ -122,7 +122,7 @@ public class Game1 : Game
 
         _ghosts = new List<Ghost> { _blinky, _pinky, _inky, _clyde };
 
-        _blinky.IsReleased = true; // blinky starts moving immediately
+        _blinky.IsReleased = true; 
         _pinky.IsReleased = false;
         _inky.IsReleased = false;
         _clyde.IsReleased = false;
@@ -142,7 +142,7 @@ public class Game1 : Game
         KeyboardState currentKState = Keyboard.GetState();
         MouseState mouse = Mouse.GetState();
 
-        // Toggle music (M) and sfx (K)
+        
         if (currentKState.IsKeyDown(Keys.M) && _previousKState.IsKeyUp(Keys.M))
         {
             _sound.ToggleMusic();
@@ -158,7 +158,7 @@ public class Game1 : Game
                 _prevMouse.LeftButton == ButtonState.Released &&
                 _soundButtonRect.Contains(mouse.Position))
             {
-                // Old behavior: toggle both. Keep for UI button compatibility.
+                
                 _sound.SetMuted(!_sound.IsMuted);
             }
         }
@@ -181,7 +181,7 @@ public class Game1 : Game
             if (currentKState.IsKeyDown(Keys.Escape) && _previousKState.IsKeyUp(Keys.Escape))
             {
                 _currentState = GameState.MainMenu;
-                _previousKState = Keyboard.GetState(); // prevent key bleed
+                _previousKState = Keyboard.GetState(); 
             }
         }
 
@@ -195,7 +195,7 @@ public class Game1 : Game
         {
             _totalGhostTimer += gameTime.ElapsedGameTime.TotalSeconds;
 
-            // staged ghost releases
+            
             if (_totalGhostTimer >= 1 && !_pinky.IsReleased)
             {
                 _pinky.IsReleased = true;
@@ -215,10 +215,10 @@ public class Game1 : Game
             foreach (var g in _ghosts)
                 g.Update(gameTime, _mazeMap);
 
-            // pass dotManager also for rail logic
+            
             _pacman.Update(gameTime, _mazeMap, _dotManager);
 
-            // If Pacman is in dying animation, wait for it to finish before switching to GameOver
+            
             if (_pacman.CurrentAnimationState == Pacman.AnimationState.Dead)
             {
                 _isNewHighScore = currentScore > highScore.Value;
@@ -228,12 +228,12 @@ public class Game1 : Game
             }
             else
             {
-                // check collisions while not currently dying
+                
                 foreach (var g in _ghosts)
                 {
                     if (!_pacman.IsDying && g.Bounds.Intersects(_pacman.Bounds))
                     {
-                        // start dying animation — pacman will become Dead after animation completes
+                        
                         _pacman.StartDying();
                         _sound.PlayDeath();
                         break;
@@ -318,9 +318,9 @@ public class Game1 : Game
             foreach (var g in _ghosts)
                 g.Draw(_spriteBatch);
 
-            // draw mute/volume icon (button)
+            
             Texture2D icon = _sound.IsMuted ? _muteTex : _volumeTex;
-            // scale icon down to 10% and position near top-right
+            
             _spriteBatch.Draw(icon, new Vector2(_soundButtonRect.X + 590, _soundButtonRect.Y - 23), null, Color.White, 0f, Vector2.Zero, 0.10f, SpriteEffects.None, 0f);
         }
 

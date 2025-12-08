@@ -11,11 +11,11 @@ namespace Final_Project_Pacman
         private Dictionary<string, Texture2D[]> _dyingFrames;
         private float _animTimer;
         private int _frameIndex;
-        private float _animInterval = 100f; // ms per frame
+        private float _animInterval = 100f; 
         private SoundManager _sound;
 
         public Vector2 Position;
-        public float Speed = 100f; // pixels/second
+        public float Speed = 100f; 
         public bool IsMoving { get; private set; }
         public bool IsDying { get; private set; }
 
@@ -25,7 +25,7 @@ namespace Final_Project_Pacman
         public enum AnimationState { Normal, Dying, Dead }
         public AnimationState CurrentAnimationState { get; private set; } = AnimationState.Normal;
 
-        // collision size (approx)
+        
         public int Size = 16;
 
         private float pacmanScale = 1.8f;
@@ -41,7 +41,7 @@ namespace Final_Project_Pacman
 
         public void LoadContent(Microsoft.Xna.Framework.Content.ContentManager Content)
         {
-            // normal animation (3 frames each direction)
+            
             _frames["Right"] = new Texture2D[] {
                 Content.Load<Texture2D>("assets/pacman-right-1"),
                 Content.Load<Texture2D>("assets/pacman-right-2"),
@@ -63,7 +63,7 @@ namespace Final_Project_Pacman
                 Content.Load<Texture2D>("assets/pacman-down-3")
             };
 
-            // dying animations (5 frames per direction) - filenames must match
+            
             _dyingFrames["Right"] = new Texture2D[] {
                 Content.Load<Texture2D>("assets/pacman-dying-right-1"),
                 Content.Load<Texture2D>("assets/pacman-dying-right-2"),
@@ -106,7 +106,7 @@ namespace Final_Project_Pacman
             _animTimer = 0;
         }
 
-        // Update now accepts MazeMap and DotManager to enforce rail movement
+        
         public void Update(GameTime gameTime, MazeMap maze, DotManager dots)
         {
             if (CurrentAnimationState == AnimationState.Dead)
@@ -114,7 +114,7 @@ namespace Final_Project_Pacman
 
             if (CurrentAnimationState == AnimationState.Dying)
             {
-                // animate dying to completion
+                
                 _animTimer += (float)gameTime.ElapsedGameTime.TotalMilliseconds;
                 float dieInterval = 120f;
                 if (_animTimer >= dieInterval)
@@ -131,7 +131,7 @@ namespace Final_Project_Pacman
                 return;
             }
 
-            // Normal movement (grid-aligned using dot rails)
+           
             float dt = (float)gameTime.ElapsedGameTime.TotalSeconds;
             Vector2 inputDir = Vector2.Zero;
             Direction? desiredDir = null;
@@ -142,13 +142,13 @@ namespace Final_Project_Pacman
             else if (ks.IsKeyDown(Keys.Left)) { inputDir = new Vector2(-1, 0); desiredDir = Direction.Left; }
             else if (ks.IsKeyDown(Keys.Right)) { inputDir = new Vector2(1, 0); desiredDir = Direction.Right; }
 
-            // grid-aware movement: snap to nearest dot tile center and move only along tiles that exist in dot mask
+            
             if (desiredDir != null)
             {
-                // check if next tile along desired direction is a rail
+                
                 if (dots.CanMoveFromWorld(Position, desiredDir.Value, Speed, dt))
                 {
-                    // move in desired dir
+                    
                     Vector2 dirVec = DirectionToVector(desiredDir.Value);
                     Vector2 next = Position + dirVec * Speed * dt;
                     if (!CollidesWithWall(next, maze))
@@ -161,7 +161,7 @@ namespace Final_Project_Pacman
             }
             else
             {
-                // continue moving in current direction if possible
+               
                 Vector2 dir = DirectionToVector(CurrentDirection);
                 Vector2 next = Position + dir * Speed * dt;
                 if (!CollidesWithWall(next, maze) && dots.IsRailAtWorld(next))
@@ -222,7 +222,7 @@ namespace Final_Project_Pacman
         {
             if (!IsMoving)
             {
-                _frameIndex = 1; // closed mouth frame
+                _frameIndex = 1; 
                 _animTimer = 0;
                 return;
             }
@@ -233,7 +233,7 @@ namespace Final_Project_Pacman
                 _animTimer -= _animInterval;
                 _frameIndex = (_frameIndex + 1) % _frames[CurrentDirection.ToString()].Length;
 
-                // only play chomp if sfx enabled via SoundManager
+               
                 if (_frameIndex == 0 && _sound != null && !_sound.SfxMuted)
                     _sound.Chomp?.Play();
             }
