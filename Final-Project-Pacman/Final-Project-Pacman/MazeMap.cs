@@ -15,6 +15,8 @@ namespace Final_Project_Pacman
         private float scaleY;
 
         private Texture2D debugPixel;
+        public Rectangle DrawRect => drawRect;
+
 
        
         private readonly Color wallColor = new Color(0, 162, 255);
@@ -31,6 +33,8 @@ namespace Final_Project_Pacman
             scaleX = (float)drawRect.Width / texWidth;
             scaleY = (float)drawRect.Height / texHeight;
         }
+
+        
 
         public void InitDebug(GraphicsDevice gd)
         {

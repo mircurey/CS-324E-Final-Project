@@ -57,6 +57,9 @@ public class Game1 : Game
     {
         _currentState = GameState.MainMenu;
         _ghosts = new List<Ghost>();
+        _dotManager = new DotManager();
+        _sound = new SoundManager();
+        
         base.Initialize();
     }
 
@@ -64,36 +67,47 @@ public class Game1 : Game
     {
         _spriteBatch = new SpriteBatch(GraphicsDevice);
 
+        // load fonts / textures first
         _font = Content.Load<SpriteFont>("fonts/PressStart2P");
         _mazeTexture = Content.Load<Texture2D>("assets/pacmaze");
-            
+
         _blinkyTexture = Content.Load<Texture2D>("assets/blinky");
-        _pinkyTexture = Content.Load<Texture2D>("assets/pinky");
-        _inkyTexture = Content.Load<Texture2D>("assets/inky");
-        _clydeTexture = Content.Load<Texture2D>("assets/clyde");
+        _pinkyTexture  = Content.Load<Texture2D>("assets/pinky");
+        _inkyTexture   = Content.Load<Texture2D>("assets/inky");
+        _clydeTexture  = Content.Load<Texture2D>("assets/clyde");
 
         _muteTex   = Content.Load<Texture2D>("assets/MuteVolume");
         _volumeTex = Content.Load<Texture2D>("assets/VolumeOn");
         int btnX = _graphics.PreferredBackBufferWidth - _muteTex.Width - 10;
-        int btnY = 40;  
+        int btnY = 40;
         _soundButtonRect = new Rectangle(btnX, btnY, _muteTex.Width, _muteTex.Height);
 
         highScore = new HighScore();
 
+        // sound manager: create and load audio assets
         _sound = new SoundManager();
         _sound.LoadContent(Content);
         _sound.SetMuted(false);
 
+        // --- IMPORTANT: create MazeMap BEFORE generating dots ---
         Rectangle mazeDrawRect = new Rectangle(0, 50, 560, 570);
         _mazeMap = new MazeMap(_mazeTexture, mazeDrawRect);
+        // optional: _mazeMap.InitDebug(GraphicsDevice);
 
-        _pacman = new Pacman(_sound);
-        _pacman.LoadContent(Content);
-
+        // create + load DotManager, then generate dots using the maze (so offsets come from the maze)
         _dotManager = new DotManager();
         _dotManager.LoadContent(Content, GraphicsDevice);
-        _dotManager.GenerateDots(_mazeMap); 
+        _dotManager.GenerateDots(_mazeMap);
 
+        // create Pacman AFTER dots exist; pass the dot manager if your constructor expects it
+        _pacman = new Pacman(_sound, _dotManager);
+        _pacman.LoadContent(Content);
+
+        // set starting Pacman position explicitly here (safe & clear)
+        
+        _pacman.CurrentDirection = Pacman.Direction.Right;
+
+        // timer and ghosts (you can move ghost creation to StartNewGame if you prefer)
         _timer = new GameTimer(60);
 
         _sound.PlayBeginning();
@@ -106,7 +120,7 @@ public class Game1 : Game
         _dotManager.GenerateDots(_mazeMap);
         
         
-        _pacman.Position = _dotManager.GridToWorldCenter(14, 1); 
+        
         _pacman.CurrentDirection = Pacman.Direction.Right;
         _pacman.ResetState();
 

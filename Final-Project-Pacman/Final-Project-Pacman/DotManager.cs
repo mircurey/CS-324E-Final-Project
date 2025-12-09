@@ -21,15 +21,6 @@ namespace Final_Project_Pacman
 
         public int AppleValue = 50;
 
-        
-        private string[] mask;
-        private int rows;
-        private int cols;
-        private int tile = 20;
-        private int offsetX = 0;
-        private int offsetY = 50;
-        private int pelletSize = 6;
-        private bool[,] rail; 
 
         public void LoadContent(Microsoft.Xna.Framework.Content.ContentManager content,
                                 GraphicsDevice graphicsDevice)
@@ -40,158 +31,84 @@ namespace Final_Project_Pacman
             _dotTex.SetData(new[] { Color.White });
 
             _appleTex = content.Load<Texture2D>("assets/apple");
+
         }
 
         public void GenerateDots(MazeMap maze)
         {
             _dots.Clear();
 
-            tile = 20;
-            offsetX = 0;
-            offsetY = 50;
-            pelletSize = 6;
+            int pelletSize = 6;
+            int tile = 20;
 
-            mask =
-            new string[]
+            int offsetX = 0;
+            int offsetY = 50;
+            int shiftY = -3;       
+            int extraShift = 7;   
+
+            string[] mask =
             {
                 "0000000000000000000000000000",
-                "0000000000000000000000000000",
-                "0111111111111001111111111110",
-                "0100001000001001000001000010",
-                "0100001000001001000001000010",
-                "0111111111111111111111111110",
-                "0000000000000000000000000000",
-                "0100001001000000001001000010",
-                "0111111001111001111001111110",
-                "0000001000001001000001000000",
-                "0000001000001001000001000000",
-                "0000001001111111111001000000",
-                "0000001001000000001001000000",
-                "0000011111000000001111111111",
-                "0000000000000000000000000000",
-                "0000001001000000001001000000",
-                "0000001001111111111001000000",
-                "0000001001000000001001000000",
-                "0000001001000000001001000000",
-                "0111111111111001111111111110",
-                "0100001000001001000001000010",
-                "0111001111111111111111001110",
-                "0000000000000000000000000000",
-                "0001001001000000001001001000",
-                "0111111001111001111001111110",
-                "0100000000001001000000000010",
-                "0100000000001001000000000010",
-                "0111111111111111111111111110"
+                "0000000000000000000000000000", // row 1
+                "0111111111111001111111111110", // row 2
+                "0100001000001001000001000010", // row 3
+                "0100001000001001000001000010", // row 4
+                "0111111111111111111111111110", // row 5  
+                "0000000000000000000000000000", // row 6
+                "0100001001000000001001000010", // row 7
+                "0111111001111001111001111110", // row 8
+                "0000001000001001000001000000", // row 9
+                "0000001000001001000001000000", // row 10
+                "0000001001111111111001000000", // row 11
+                "0000001001000000001001000000", // row 12
+                "0000011111000000001111111111", // row 13 
+                "0000000000000000000000000000", // row 14
+                "0000001001000000001001000000", // row 15
+                "0000001001111111111001000000", // row 16
+                "0000001001000000001001000000", // row 17
+                "0000001001000000001001000000", // row 18
+                "0111111111111001111111111110", // row 19
+                "0100001000001001000001000010", // row 20
+                "0111001111111111111111001110", // row 21 
+                "0000000000000000000000000000", // row 22
+                "0001001001000000001001001000", // row 23
+                "0111111001111001111001111110", // row 24
+                "0100000000001001000000000010", // row 25
+                "0100000000001001000000000010", // row 26
+                "0111111111111111111111111110"  // row 27
             };
 
-            rows = mask.Length;
-            cols = mask[0].Length;
-            rail = new bool[rows, cols];
+            int rows = mask.Length;
+            int cols = mask[0].Length;
 
             for (int row = 0; row < rows; row++)
             {
                 for (int col = 0; col < cols; col++)
                 {
-                    if (mask[row][col] != '1') continue;
+                    if (mask[row][col] != '1')
+                        continue;
 
                     int px = offsetX + col * tile + tile / 2;
-                    int py = offsetY + row * tile + tile / 2;
+                    int py = offsetY + row * tile + tile / 2 + shiftY;
 
-                   
-                    int shiftY = -3;
-                    int extraShift = 7;
-                    if (row == 5 || row == 13 || row == 21) py += extraShift;
-                    py += shiftY;
+                    if (row == 5 || row == 13 || row == 21)
+                        py += extraShift;
 
-                    _dots.Add(new Rectangle(px - pelletSize / 2, py - pelletSize / 2, pelletSize, pelletSize));
-                    rail[row, col] = true;
+                    _dots.Add(new Rectangle(
+                        px - pelletSize / 2,
+                        py - pelletSize / 2,
+                        pelletSize,
+                        pelletSize
+                    ));
                 }
             }
 
-            _fruitRect = new Rectangle(270, 300, 16, 16);
-            _apple1Rect = new Rectangle(500, 92, 16, 16);
-            _apple2Rect = new Rectangle(260, 479, 16, 16);
+            _fruitRect = new Rectangle(270, 300 + shiftY + 20, 16, 16);
+            _apple1Rect = new Rectangle(500, 92 + shiftY, 16, 16);
+
+            _apple2Rect = new Rectangle(260, 479 + shiftY, 16, 16);
         }
 
-       
-        public bool IsRailAtGrid(int row, int col)
-        {
-            if (rail == null) return false;
-            if (row < 0 || col < 0 || row >= rail.GetLength(0) || col >= rail.GetLength(1)) return false;
-            return rail[row, col];
-        }
-
-       
-        public Point WorldToGrid(Vector2 world)
-        {
-            int cx = (int)world.X;
-            int cy = (int)world.Y;
-
-            
-            int localY = cy - offsetY;
-            if (localY < 0) localY = 0;
-
-            int row = localY / tile;
-            int col = (cx - offsetX) / tile;
-            if (row < 0) row = 0;
-            if (col < 0) col = 0;
-            if (row >= (rail?.GetLength(0) ?? 1)) row = (rail?.GetLength(0) ?? 1) - 1;
-            if (col >= (rail?.GetLength(1) ?? 1)) col = (rail?.GetLength(1) ?? 1) - 1;
-
-            return new Point(row, col);
-        }
-
-        
-        public bool IsRailAtWorld(Vector2 world)
-        {
-            var p = WorldToGrid(world);
-            return IsRailAtGrid(p.X, p.Y);
-        }
-
-        
-        public Vector2 GridToWorldCenter(int row, int col)
-        {
-            int sx = offsetX + col * tile + tile / 2;
-            int sy = offsetY + row * tile + tile / 2;
-            int shiftY = -3;
-            if (row == 5 || row == 13 || row == 21) sy += 7;
-            sy += shiftY;
-            return new Vector2(sx, sy);
-        }
-
-        
-        public bool CanMoveFromWorld(Vector2 worldPos, Pacman.Direction desiredDir, float speed, float dt)
-        {
-            Point grid = WorldToGrid(worldPos);
-            int row = grid.X;
-            int col = grid.Y;
-
-            int nr = row;
-            int nc = col;
-            switch (desiredDir)
-            {
-                case Pacman.Direction.Up: nr = row - 1; break;
-                case Pacman.Direction.Down: nr = row + 1; break;
-                case Pacman.Direction.Left: nc = col - 1; break;
-                case Pacman.Direction.Right: nc = col + 1; break;
-            }
-
-            
-            if (IsRailAtGrid(nr, nc)) return true;
-
-            
-            Vector2 dirVec = desiredDir switch
-            {
-                Pacman.Direction.Up => new Vector2(0, -1),
-                Pacman.Direction.Down => new Vector2(0, 1),
-                Pacman.Direction.Left => new Vector2(-1, 0),
-                Pacman.Direction.Right => new Vector2(1, 0),
-                _ => Vector2.Zero
-            };
-
-            Vector2 probe = worldPos + dirVec * speed * dt;
-            return ! false;
-        }
 
         public int Update(Pacman pac)
         {
@@ -214,6 +131,7 @@ namespace Final_Project_Pacman
                 _fruitRect = Rectangle.Empty;
             }
 
+            // Apple 1
             if (_apple1Rect != Rectangle.Empty && pac.Bounds.Intersects(_apple1Rect))
             {
                 score += AppleValue;
@@ -221,6 +139,7 @@ namespace Final_Project_Pacman
                 _apple1Rect = Rectangle.Empty;
             }
 
+            // Apple 2
             if (_apple2Rect != Rectangle.Empty && pac.Bounds.Intersects(_apple2Rect))
             {
                 score += AppleValue;
@@ -235,6 +154,7 @@ namespace Final_Project_Pacman
         {
             foreach (var dot in _dots)
             {
+                var bigDot = new Rectangle(dot.X - 2, dot.Y - 2, dot.Width + 6, dot.Height + 6);
                 sb.Draw(_dotTex, dot, Color.Yellow);
             }
 

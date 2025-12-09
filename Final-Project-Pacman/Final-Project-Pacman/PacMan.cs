@@ -30,13 +30,16 @@ namespace Final_Project_Pacman
 
         private float pacmanScale = 1.8f;
 
-        public Pacman(SoundManager sound)
+        private DotManager dot;
+
+        public Pacman(SoundManager sound, DotManager _dot)
         {
             _frames = new Dictionary<string, Texture2D[]>();
             _dyingFrames = new Dictionary<string, Texture2D[]>();
             _sound = sound;
             IsDying = false;
             CurrentAnimationState = AnimationState.Normal;
+            dot = _dot;
         }
 
         public void LoadContent(Microsoft.Xna.Framework.Content.ContentManager Content)
@@ -95,7 +98,9 @@ namespace Final_Project_Pacman
 
             // initial position
             if (Position == Vector2.Zero)
-                Position = new Vector2(20, 315);
+            {
+                Position = new Vector2(20, 310); 
+            }
         }
 
         public void ResetState()
@@ -134,37 +139,46 @@ namespace Final_Project_Pacman
            
             float dt = (float)gameTime.ElapsedGameTime.TotalSeconds;
             Vector2 inputDir = Vector2.Zero;
-            Direction? desiredDir = null;
 
             KeyboardState ks = Keyboard.GetState();
-            if (ks.IsKeyDown(Keys.Up)) { inputDir = new Vector2(0, -1); desiredDir = Direction.Up;  }
-            else if (ks.IsKeyDown(Keys.Down)) { inputDir = new Vector2(0, 1); desiredDir = Direction.Down; }
-            else if (ks.IsKeyDown(Keys.Left)) { inputDir = new Vector2(-1, 0); desiredDir = Direction.Left; }
-            else if (ks.IsKeyDown(Keys.Right)) { inputDir = new Vector2(1, 0); desiredDir = Direction.Right; }
+            if (ks.IsKeyDown(Keys.Up)) inputDir = new Vector2(0, -1);
+            else if (ks.IsKeyDown(Keys.Down)) inputDir = new Vector2(0, 1);
+            else if (ks.IsKeyDown(Keys.Left)) inputDir = new Vector2(-1, 0);
+            else if (ks.IsKeyDown(Keys.Right)) inputDir = new Vector2(1, 0);
 
             
-            if (desiredDir != null)
+            if (inputDir != Vector2.Zero)
             {
-                
-                if (dots.CanMoveFromWorld(Position, desiredDir.Value, Speed, dt))
+                Vector2 nextInputPos = Position + inputDir * Speed * dt;
+                if (!CollidesWithWall(nextInputPos, maze))
                 {
-                    
-                    Vector2 dirVec = DirectionToVector(desiredDir.Value);
-                    Vector2 next = Position + dirVec * Speed * dt;
-                    if (!CollidesWithWall(next, maze))
+                    inputDir.Normalize();
+                    Position += inputDir * Speed * dt;
+                    CurrentDirection = inputDir switch
                     {
-                        Position = next;
-                        CurrentDirection = desiredDir.Value;
-                        IsMoving = true;
-                    }
+                        var v when v == new Vector2(0, -1) => Direction.Up,
+                        var v when v == new Vector2(0, 1) => Direction.Down,
+                        var v when v == new Vector2(-1, 0) => Direction.Left,
+                        var v when v == new Vector2(1, 0) => Direction.Right,
+                        _ => CurrentDirection
+                    };
+                    IsMoving = true;
                 }
             }
             else
             {
-               
-                Vector2 dir = DirectionToVector(CurrentDirection);
+                // continue moving in current direction if path is clear
+                Vector2 dir = CurrentDirection switch
+                {
+                    Direction.Up => new Vector2(0, -1),
+                    Direction.Down => new Vector2(0, 1),
+                    Direction.Left => new Vector2(-1, 0),
+                    Direction.Right => new Vector2(1, 0),
+                    _ => Vector2.Zero
+                };
+
                 Vector2 next = Position + dir * Speed * dt;
-                if (!CollidesWithWall(next, maze) && dots.IsRailAtWorld(next))
+                if (!CollidesWithWall(next, maze))
                 {
                     Position = next;
                     IsMoving = true;
