@@ -24,6 +24,8 @@ Ghost.cs- This class draws the ghosts and handles ghost positioning. Each ghost 
 
 HighScore.cs- When the game starts, it reads a file named "highscore.txt" and loads the saved high score (or sets it to 0 if the file doesn’t exist). When the player finishes the game, the high score will only be replaced if the new score is higher.
 
+Pause.cs- This class manages the on-screen pause button, allowing the player to click the pause icon to toggle the game between paused and unpaused states without interrupting the main game flow.
+
 Program.cs- This file is the entry point of the Pac-Man game. It creates an instance of the Game1 class and starts the game loop by calling Run().
 
 Responsibilities:
