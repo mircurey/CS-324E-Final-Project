@@ -42,6 +42,8 @@ public class Game1 : Game
     private Texture2D _volumeTex;
     private Rectangle _soundButtonRect;
     private MouseState _prevMouse;
+    private Pause _pause;
+
 
     public Game1()
     {
@@ -105,6 +107,8 @@ public class Game1 : Game
         _timer = new GameTimer(120);
 
         _sound.PlayBeginning();
+        _pause = new Pause();
+        _pause.LoadContent(Content, GraphicsDevice);
     }
 
     private void StartNewGame()
@@ -200,6 +204,13 @@ public class Game1 : Game
 
         if (_currentState == GameState.Playing)
         {
+            _pause.Update(gameTime);
+            if (_pause.IsPaused)
+            {
+                _previousKState = currentKState;
+                base.Update(gameTime);
+                return;
+            }
             _totalGhostTimer += gameTime.ElapsedGameTime.TotalSeconds;
 
             
@@ -325,7 +336,8 @@ public class Game1 : Game
             foreach (var g in _ghosts)
                 g.Draw(_spriteBatch);
 
-            
+            _pause.Draw(_spriteBatch);
+
             Texture2D icon = _sound.IsMuted ? _muteTex : _volumeTex;
             
             _spriteBatch.Draw(icon, new Vector2(_soundButtonRect.X + 590, _soundButtonRect.Y - 23), null, Color.White, 0f, Vector2.Zero, 0.10f, SpriteEffects.None, 0f);
