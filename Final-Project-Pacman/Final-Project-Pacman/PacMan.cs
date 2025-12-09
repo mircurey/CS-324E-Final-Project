@@ -109,6 +109,7 @@ namespace Final_Project_Pacman
             CurrentAnimationState = AnimationState.Normal;
             _frameIndex = 1;
             _animTimer = 0;
+            Position = new Vector2(20, 310);
         }
 
         
