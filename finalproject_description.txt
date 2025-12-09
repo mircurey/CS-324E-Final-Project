@@ -8,7 +8,7 @@ Apple: 50 points
 Strawberry: 100 points
 
 Classes:
-Pacman.cs- This class controls PacMan movement, specifically the direction changing and the wall collisions. It also deals with the sound interactions. The animation hierarchy in Pacman.cs uses a direction-based dictionary where each movement direction maps to an array of animation frames.
+Pacman.cs- This class controls PacMan movement, specifically the direction changing and the wall collisions. It also deals with the sound interactions. The animation hierarchy in Pacman.cs is demonstrated via different animation sequences for PacMan's different states.
 
 Game1.cs- This class manages the main game states (Main Menu, Playing, Info Screen, Game Over). It also handles keyboard and mouse inputs. It also draws all the UI elements.
 
@@ -29,7 +29,7 @@ Program.cs- This file is the entry point of the Pac-Man game. It creates an inst
 Responsibilities:
 Manasa- Data Input/Output (High Score), Buttons, Pellets, Timer
 Mireya- Game design interfaces, Ghost Animation
-Tamima- PacMan Animation, Walls, Sound
+Tamima- PacMan Animation, Keyboard Controls, Walls, Sound
 
 Expected Challenges: 
 We had some difficulty in building the walls of the inside of the maze. 
