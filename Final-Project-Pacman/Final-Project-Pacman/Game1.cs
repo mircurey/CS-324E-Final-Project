@@ -166,15 +166,21 @@ public class Game1 : Game
         }
 
         if (_currentState == GameState.Playing)
-        {
-            if (mouse.LeftButton == ButtonState.Pressed &&
-                _prevMouse.LeftButton == ButtonState.Released &&
-                _soundButtonRect.Contains(mouse.Position))
             {
-                
-                _sound.SetMuted(!_sound.IsMuted);
+                if (mouse.LeftButton == ButtonState.Pressed &&
+                    _prevMouse.LeftButton == ButtonState.Released)
+                {
+                    if (_pause.ButtonRect.Contains(mouse.Position))
+                    {
+                        _pause.TogglePause();
+                    }
+                    
+                    else if (_soundButtonRect.Contains(mouse.Position))
+                    {
+                        _sound.SetMuted(!_sound.IsMuted);
+                    }
+                }
             }
-        }
         _prevMouse = mouse;
 
         if (_currentState == GameState.MainMenu)
@@ -204,7 +210,7 @@ public class Game1 : Game
 
         if (_currentState == GameState.Playing)
         {
-            _pause.Update(gameTime);
+            
             if (_pause.IsPaused)
             {
                 _previousKState = currentKState;
