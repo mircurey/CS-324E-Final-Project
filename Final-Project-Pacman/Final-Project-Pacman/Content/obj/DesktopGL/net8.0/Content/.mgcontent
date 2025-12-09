@@ -14,6 +14,26 @@
     <File>/Users/manasadamarla/CS-324E-Final-Project/Final-Project-Pacman/Final-Project-Pacman/Content/assets/pacman-down-1.png</File>
     <File>/Users/manasadamarla/CS-324E-Final-Project/Final-Project-Pacman/Final-Project-Pacman/Content/assets/pacman-down-2.png</File>
     <File>/Users/manasadamarla/CS-324E-Final-Project/Final-Project-Pacman/Final-Project-Pacman/Content/assets/pacman-down-3.png</File>
+    <File>/Users/manasadamarla/CS-324E-Final-Project/Final-Project-Pacman/Final-Project-Pacman/Content/assets/pacman-dying-down-1.png</File>
+    <File>/Users/manasadamarla/CS-324E-Final-Project/Final-Project-Pacman/Final-Project-Pacman/Content/assets/pacman-dying-down-2.png</File>
+    <File>/Users/manasadamarla/CS-324E-Final-Project/Final-Project-Pacman/Final-Project-Pacman/Content/assets/pacman-dying-down-3.png</File>
+    <File>/Users/manasadamarla/CS-324E-Final-Project/Final-Project-Pacman/Final-Project-Pacman/Content/assets/pacman-dying-down-4.png</File>
+    <File>/Users/manasadamarla/CS-324E-Final-Project/Final-Project-Pacman/Final-Project-Pacman/Content/assets/pacman-dying-down-5.png</File>
+    <File>/Users/manasadamarla/CS-324E-Final-Project/Final-Project-Pacman/Final-Project-Pacman/Content/assets/pacman-dying-left-1.png</File>
+    <File>/Users/manasadamarla/CS-324E-Final-Project/Final-Project-Pacman/Final-Project-Pacman/Content/assets/pacman-dying-left-2.png</File>
+    <File>/Users/manasadamarla/CS-324E-Final-Project/Final-Project-Pacman/Final-Project-Pacman/Content/assets/pacman-dying-left-3.png</File>
+    <File>/Users/manasadamarla/CS-324E-Final-Project/Final-Project-Pacman/Final-Project-Pacman/Content/assets/pacman-dying-left-4.png</File>
+    <File>/Users/manasadamarla/CS-324E-Final-Project/Final-Project-Pacman/Final-Project-Pacman/Content/assets/pacman-dying-left-5.png</File>
+    <File>/Users/manasadamarla/CS-324E-Final-Project/Final-Project-Pacman/Final-Project-Pacman/Content/assets/pacman-dying-right-1.png</File>
+    <File>/Users/manasadamarla/CS-324E-Final-Project/Final-Project-Pacman/Final-Project-Pacman/Content/assets/pacman-dying-right-2.png</File>
+    <File>/Users/manasadamarla/CS-324E-Final-Project/Final-Project-Pacman/Final-Project-Pacman/Content/assets/pacman-dying-right-3.png</File>
+    <File>/Users/manasadamarla/CS-324E-Final-Project/Final-Project-Pacman/Final-Project-Pacman/Content/assets/pacman-dying-right-4.png</File>
+    <File>/Users/manasadamarla/CS-324E-Final-Project/Final-Project-Pacman/Final-Project-Pacman/Content/assets/pacman-dying-right-5.png</File>
+    <File>/Users/manasadamarla/CS-324E-Final-Project/Final-Project-Pacman/Final-Project-Pacman/Content/assets/pacman-dying-up-1.png</File>
+    <File>/Users/manasadamarla/CS-324E-Final-Project/Final-Project-Pacman/Final-Project-Pacman/Content/assets/pacman-dying-up-2.png</File>
+    <File>/Users/manasadamarla/CS-324E-Final-Project/Final-Project-Pacman/Final-Project-Pacman/Content/assets/pacman-dying-up-3.png</File>
+    <File>/Users/manasadamarla/CS-324E-Final-Project/Final-Project-Pacman/Final-Project-Pacman/Content/assets/pacman-dying-up-4.png</File>
+    <File>/Users/manasadamarla/CS-324E-Final-Project/Final-Project-Pacman/Final-Project-Pacman/Content/assets/pacman-dying-up-5.png</File>
     <File>/Users/manasadamarla/CS-324E-Final-Project/Final-Project-Pacman/Final-Project-Pacman/Content/assets/pacman-left-1.png</File>
     <File>/Users/manasadamarla/CS-324E-Final-Project/Final-Project-Pacman/Final-Project-Pacman/Content/assets/pacman-left-2.png</File>
     <File>/Users/manasadamarla/CS-324E-Final-Project/Final-Project-Pacman/Final-Project-Pacman/Content/assets/pacman-left-3.png</File>
@@ -37,6 +57,26 @@
     <File>/Users/manasadamarla/CS-324E-Final-Project/Final-Project-Pacman/Final-Project-Pacman/Content/pacman_intermission.wav</File>
   </SourceFiles>
   <DestFiles>
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />
