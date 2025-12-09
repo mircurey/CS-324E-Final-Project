@@ -35,3 +35,4 @@ Expected Challenges:
 We had some difficulty in building the walls of the inside of the maze. 
 Another obstacle we faced is the mapping out of the pellets and fruits.
 We also had difficulties in PacMan movements, sometimes the PacMan appears to be inside the wall.
+We also had difficulties with the Ghost movement, as it changes paths in a random direction instead of tracking PacMan.
