@@ -8,7 +8,7 @@ Apple: 50 points
 Strawberry: 100 points
 
 Classes:
-Pacman.cs- This class controls PacMan movement, specifically the direction changing and the wall collisions. It also deals with the sound interactions.
+Pacman.cs- This class controls PacMan movement, specifically the direction changing and the wall collisions. It also deals with the sound interactions. The animation hierarchy in Pacman.cs uses a direction-based dictionary where each movement direction maps to an array of animation frames.
 
 Game1.cs- This class manages the main game states (Main Menu, Playing, Info Screen, Game Over). It also handles keyboard and mouse inputs. It also draws all the UI elements.
 
@@ -20,7 +20,7 @@ SoundManager.cs- This class includes the mute and unmute logic. It controls all 
 
 GameTimer.cs- This class manages the 60 second timer. It also tracks the remaining time and when the game ends, resets the timer.
 
-Ghost.cs- This class draws the ghosts and handles ghost positioning. Each ghost has a texture, a name, a position, a movement speed, and a current direction. The class also draws animated eyes that look in the direction the ghost is moving.
+Ghost.cs- This class draws the ghosts and handles ghost positioning. Each ghost has a texture, a name, a position, a movement speed, and a current direction. The animation hierarchy in Ghost.cs is driven by movement direction, where each ghost’s eyes shift based on its current direction.
 
 HighScore.cs- When the game starts, it reads a file named "highscore.txt" and loads the saved high score (or sets it to 0 if the file doesn’t exist). When the player finishes the game, the high score will only be replaced if the new score is higher.
 
