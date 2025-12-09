@@ -1,0 +1,37 @@
+PacMan
+Intended Animation: 
+This project is a fully functional recreation of the classic Pac-Man arcade game built using C# and MonoGame. It includes a maze, filled with pellets and fruits, and ghosts that are chasing the player (PacMan). There are multiple components such as sound effects, background music, mute/unmute, and screens for different game states. There are walls in which the player is restricted in moving in those directions as well. There is a high score and a score collected based on points, and the game only runs for 1 minute.
+
+Scoring System:
+Pellet: 10 points
+Apple: 50 points
+Strawberry: 100 points
+
+Classes:
+Pacman.cs- This class controls PacMan movement, specifically the direction changing and the wall collisions. It also deals with the sound interactions.
+
+Game1.cs- This class manages the main game states (Main Menu, Playing, Info Screen, Game Over). It also handles keyboard and mouse inputs. It also draws all the UI elements.
+
+MazeMap.cs- This class reads the maze texture pixel data and detects wall locations using color analysis. It also ensures Pac-Man cannot pass through walls.
+
+DotManager.cs- This class draws the pellets and fruits, with the pellets being drawn using a string array to match the custom map. When the player hovers a pellet or fruit, it is eaten and added to the current score. The fruit is worth more than an ordinary pellet.
+
+SoundManager.cs- This class includes the mute and unmute logic. It controls all the sounds for each specific movement along with the background music on a loop.
+
+GameTimer.cs- This class manages the 60 second timer. It also tracks the remaining time and when the game ends, resets the timer.
+
+Ghost.cs- This class draws the ghosts and handles ghost positioning. Each ghost has a texture, a name, a position, a movement speed, and a current direction. The class also draws animated eyes that look in the direction the ghost is moving.
+
+HighScore.cs- When the game starts, it reads a file named "highscore.txt" and loads the saved high score (or sets it to 0 if the file doesn’t exist). When the player finishes the game, the high score will only be replaced if the new score is higher.
+
+Program.cs- This file is the entry point of the Pac-Man game. It creates an instance of the Game1 class and starts the game loop by calling Run().
+
+Responsibilities:
+Manasa- Data Input/Output (High Score), Buttons, Pellets, Timer
+Mireya- Game design interfaces, Ghost Animation
+Tamima- PacMan Animation, Walls, Sound
+
+Expected Challenges: 
+We had some difficulty in building the walls of the inside of the maze. 
+Another obstacle we faced is the mapping out of the pellets and fruits.
+We also had difficulties in PacMan movements, sometimes the PacMan appears to be inside the wall.
